@@ -1,472 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-  <!-- Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <!-- Google Fonts - Professional -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
   <title>Ahmed Raoofuddin | AI Engineer & Full-Stack Developer</title>
-
+  
   <!-- SEO Meta Tags -->
-  <meta name="description" content="AI Engineer & Full-Stack Developer in Dubai, UAE. Expert in LLM/RAG systems, GPT-4, Python, Java Spring Boot, and cloud architecture. Building production AI solutions at scale." />
-  <meta name="keywords" content="AI Engineer, Full-Stack Developer, LLM, RAG, GPT-4, Python, Java, Spring Boot, Dubai, Machine Learning" />
-  <meta name="author" content="Ahmed Raoofuddin" />
+  <meta name="description" content="AI Engineer & Full-Stack Developer in Dubai, UAE. Expert in LLM/RAG systems, GPT-4, Python, Java Spring Boot, and cloud architecture.">
+  <meta name="keywords" content="AI Engineer, Full-Stack Developer, LLM, RAG, GPT-4, Machine Learning, Dubai">
+  <meta name="author" content="Ahmed Raoofuddin">
   
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ahmed Raoofuddin | AI Engineer & Full-Stack Developer" />
-  <meta property="og:description" content="AI Engineer & Full-Stack Developer building production LLM/RAG systems and enterprise solutions in Dubai, UAE." />
-  <meta property="og:url" content="https://ahmedraoofuddin.github.io/portfolio/" />
-  <meta property="og:image" content="https://ahmedraoofuddin.github.io/portfolio/assets/img/ahmed-profile.jpg" />
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ahmed Raoofuddin | AI Engineer & Full-Stack Developer" />
-  <meta name="twitter:description" content="Building production AI solutions at scale in Dubai." />
+  <meta property="og:title" content="Ahmed Raoofuddin | AI Engineer & Full-Stack Developer">
+  <meta property="og:description" content="Building production AI solutions at scale in Dubai, UAE.">
+  <meta property="og:image" content="https://ahmedraoofuddin.github.io/portfolio/assets/img/ahmed-profile.jpg">
+  <meta property="og:url" content="https://ahmedraoofuddin.github.io/portfolio/">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon/favicon-16x16.png" />
-  <meta name="theme-color" content="#1a365d" />
+  <link rel="icon" type="image/png" href="./assets/img/favicon/favicon-32x32.png">
+  <meta name="theme-color" content="#6366f1">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-  <!-- Desktop Navigation -->
-  <nav class="hide-on-small-only">
-    <ul class="side-nav fixed section table-of-contents">
-      <li class="logo">
-        <a href="#intro" class="brand-logo">
-          <img src="./assets/img/ahmed-profile.jpg" class="circle img-responsive profile-pic" alt="Ahmed Raoofuddin - AI Engineer">
-        </a>
-      </li>
-      <li class="bold"><a href="#about" class="waves-effect waves-dark"><i class="fa fa-user"></i><span>About</span></a></li>
-      <li class="bold"><a href="#experience" class="waves-effect waves-dark"><i class="fa fa-briefcase"></i><span>Experience</span></a></li>
-      <li class="bold"><a href="#projects" class="waves-effect waves-dark"><i class="fa fa-code"></i><span>Projects</span></a></li>
-      <li class="bold"><a href="#skills" class="waves-effect waves-dark"><i class="fa fa-cogs"></i><span>Skills</span></a></li>
-      <li class="bold"><a href="#education" class="waves-effect waves-dark"><i class="fa fa-graduation-cap"></i><span>Education</span></a></li>
-      <li class="bold"><a href="#contact" class="waves-effect waves-dark"><i class="fa fa-envelope"></i><span>Contact</span></a></li>
-      <li class="bold"><a href="./assets/resume/Ahmed_Raoofuddin_Resume.pdf" target="_blank" class="waves-effect waves-dark"><i class="fa fa-download"></i><span>Resume</span></a></li>
-    </ul>
-  </nav>
-
-  <!-- Mobile Navigation -->
-  <nav class="hide-on-large only trigger z-depth-1">
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
-    <div class="name-title">
-      <a href="#intro">Ahmed Raoofuddin</a>
-      <span>AI Engineer & Full-Stack Developer</span>
+  <!-- Desktop Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="./assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin - AI Engineer">
+      <h3>Ahmed Raoofuddin</h3>
+      <p>AI Engineer & Developer</p>
     </div>
-  </nav>
+    
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#hero"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="#about"><i class="fa-solid fa-user"></i>About</a></li>
+        <li><a href="#experience"><i class="fa-solid fa-briefcase"></i>Experience</a></li>
+        <li><a href="#projects"><i class="fa-solid fa-code"></i>Projects</a></li>
+        <li><a href="#skills"><i class="fa-solid fa-gears"></i>Skills</a></li>
+        <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="#contact"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+        <li><a href="./assets/resume/Ahmed_Raoofuddin_Resume.pdf" target="_blank"><i class="fa-solid fa-download"></i>Resume</a></li>
+      </ul>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <div class="sidebar-social">
+        <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://github.com/AhmedRaoofuddin" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="mailto:eng.ahmedraoofuddin@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </aside>
 
-  <nav class="hide-on-large only">
-    <ul id="slide-out" class="side-nav">
-      <li class="bold"><a href="#about" class="waves-effect"><i class="fa fa-user"></i><span>About</span></a></li>
-      <li class="bold"><a href="#experience" class="waves-effect"><i class="fa fa-briefcase"></i><span>Experience</span></a></li>
-      <li class="bold"><a href="#projects" class="waves-effect"><i class="fa fa-code"></i><span>Projects</span></a></li>
-      <li class="bold"><a href="#skills" class="waves-effect"><i class="fa fa-cogs"></i><span>Skills</span></a></li>
-      <li class="bold"><a href="#education" class="waves-effect"><i class="fa fa-graduation-cap"></i><span>Education</span></a></li>
-      <li class="bold"><a href="#contact" class="waves-effect"><i class="fa fa-envelope"></i><span>Contact</span></a></li>
-      <li class="bold"><a href="./assets/resume/Ahmed_Raoofuddin_Resume.pdf" target="_blank" class="waves-effect"><i class="fa fa-download"></i><span>Resume</span></a></li>
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <div class="logo">
+      <img src="./assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <span>Ahmed R.</span>
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <ul>
+      <li><a href="#hero" onclick="toggleMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+      <li><a href="#about" onclick="toggleMobileMenu()"><i class="fa-solid fa-user"></i>About</a></li>
+      <li><a href="#experience" onclick="toggleMobileMenu()"><i class="fa-solid fa-briefcase"></i>Experience</a></li>
+      <li><a href="#projects" onclick="toggleMobileMenu()"><i class="fa-solid fa-code"></i>Projects</a></li>
+      <li><a href="#skills" onclick="toggleMobileMenu()"><i class="fa-solid fa-gears"></i>Skills</a></li>
+      <li><a href="#education" onclick="toggleMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+      <li><a href="#contact" onclick="toggleMobileMenu()"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+      <li><a href="./assets/resume/Ahmed_Raoofuddin_Resume.pdf" target="_blank"><i class="fa-solid fa-download"></i>Resume</a></li>
     </ul>
-  </nav>
+  </div>
 
   <!-- Main Content -->
-  <main>
+  <main class="main-content">
+    
     <!-- Hero Section -->
-    <section id="intro" class="section scrollspy full-height">
-      <div class="container">
-        <div class="content">
-          <div class="caption">
-            <h2>Hi, I'm <span class="teal">Ahmed Raoofuddin</span></h2>
-            <h5>A <span class="typing"></span></h5>
-            <h5>AI & Full-Stack Software Engineer delivering production LLM/RAG systems and Java/Spring microservices at cloud scale. I specialize in GPT-3/4, NLP, CNNs, Transformers and full-stack development using Java/Spring Boot, Python/FastAPI and React/Next.js. Proven track record of increasing qualified leads by 35%, cutting screening time by 80% and achieving 90% automated test coverage.</h5>
-          </div>
-          <div class="social">
-            <a href="https://www.linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener">
-              <button class="icon-btn" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></button>
-            </a>
-            <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener">
-              <button class="icon-btn" aria-label="GitHub"><i class="fa fa-github"></i></button>
-            </a>
-            <a href="mailto:eng.ahmedraoofuddin@gmail.com">
-              <button class="icon-btn" aria-label="Email"><i class="fa fa-envelope"></i></button>
-            </a>
-          </div>
-          <div class="buttons">
-            <a href="#about" class="readme">Learn More</a>
-            <a href="#contact" class="contactme">Get In Touch</a>
-          </div>
+    <section id="hero" class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-hand-wave"></i>
+          <span>Welcome to my Portfolio</span>
+        </div>
+        <h1>Hi, I'm <span class="highlight">Ahmed Raoofuddin</span></h1>
+        <p class="tagline">A <span class="typing"></span></p>
+        <p class="description">AI & Full-Stack Software Engineer delivering production LLM/RAG systems and Java/Spring microservices at cloud scale. Expert in GPT-3/4, NLP, Transformers, and full-stack development with a proven track record of increasing leads by 35% and cutting screening time by 80%.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fa-solid fa-rocket"></i>View My Work
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <i class="fa-solid fa-message"></i>Get In Touch
+          </a>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section scrollspy">
-      <h3 class="page-title white-text teal">About</h3>
-      <div class="container flow-text">
-        <p>I am an <strong>AI and Full-Stack Software Engineer</strong> currently based in <strong>Dubai, UAE</strong>, delivering production LLM/RAG systems and Java/Spring microservices at cloud scale. I specialize in deploying enterprise AI solutions and web applications with expertise in GPT-3/4, NLP, CNNs, Transformers and full-stack development.</p>
-        <p>I have a proven record of architecting scalable cloud systems using Docker, Kubernetes and AWS, leading cross-functional teams and delivering products that increase qualified leads by 35%, cut screening time by 80% and achieve 90% automated test coverage.</p>
-        <p>My technical stack spans LLMOps/MLOps with tools like MLflow, Airflow and SageMaker, vector databases including FAISS, Pinecone and Weaviate, and comprehensive BPM-style workflow design.</p>
-        <ul>
-          <li><b>Location:</b> Dubai, UAE</li>
-          <li><b>Phone:</b> +971-54-352-4687</li>
-          <li><b>Email:</b> eng.ahmedraoofuddin@gmail.com</li>
-          <li><b>LinkedIn:</b> <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank">linkedin.com/in/ahmed-raoofuddin</a></li>
-          <li><b>GitHub:</b> <a href="https://github.com/AhmedRaoofuddin" target="_blank">github.com/AhmedRaoofuddin</a></li>
-        </ul>
+    <section id="about" class="about">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-user"></i>About Me</span>
+        <h2 class="section-title">Who I Am</h2>
+        <p class="section-subtitle">Passionate AI Engineer based in Dubai, UAE</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-text">
+          <p>I am an <strong>AI and Full-Stack Software Engineer</strong> currently based in <strong>Dubai, UAE</strong>, delivering production LLM/RAG systems and Java/Spring microservices at cloud scale.</p>
+          <p>I specialize in deploying enterprise AI solutions with expertise in GPT-3/4, NLP, CNNs, Transformers, and full-stack development using Java/Spring Boot, Python/FastAPI, and React/Next.js.</p>
+          <p>My technical stack spans LLMOps/MLOps with tools like MLflow, Airflow, and SageMaker, vector databases including FAISS, Pinecone, and Weaviate, and comprehensive BPM-style workflow design.</p>
+        </div>
+        
+        <div class="about-info">
+          <h4>Quick Info</h4>
+          <div class="info-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <span class="label">Location</span>
+              <span class="value">Dubai, UAE</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <span class="label">Phone</span>
+              <span class="value">+971-54-352-4687</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <span class="label">Email</span>
+              <span class="value"><a href="mailto:eng.ahmedraoofuddin@gmail.com">eng.ahmedraoofuddin@gmail.com</a></span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <div>
+              <span class="label">LinkedIn</span>
+              <span class="value"><a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank">ahmed-raoofuddin</a></span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fa-brands fa-github"></i>
+            <div>
+              <span class="label">GitHub</span>
+              <span class="value"><a href="https://github.com/AhmedRaoofuddin" target="_blank">AhmedRaoofuddin</a></span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section scrollspy">
-      <h3 class="page-title white-text teal">Experience</h3>
-      <div class="container">
-
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title"><a href="https://offplanproperties.ai/" target="_blank">OffplanProperties.ai / Zalinos Brokerage LLC</a></span>
-            <div class="role">AI Engineer</div>
-            <ul>
-              <li>Shipped production LLM/RAG services with voice and multilingual support for property search, resulting in <b>35% increase</b> in qualified leads, <b>80% reduction</b> in manual screening and p95 response time under 800 ms.</li>
-              <li>Built Java Spring Boot microservices and Python FastAPI workers with Kafka/Redis, sustaining <b>1.5 to 2.0k requests per minute</b> during campaigns without errors.</li>
-              <li>Implemented LLMOps/MLOps using MLflow, Airflow, SageMaker, LangSmith/Langfuse and RAGAS with evaluation harnesses.</li>
-              <li>Deployed on AWS/GCP with Docker/K8s, Nginx and Cloudflare, implementing blue/green rollouts and CI/CD with GitHub Actions.</li>
-              <li><b>Tech:</b> Python, Java, Next.js, Angular, Spring Boot, Generative AI, PostgreSQL, GraphQL, LangChain, NLP, Docker, Kubernetes</li>
-            </ul>
+    <section id="experience" class="experience">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-briefcase"></i>Experience</span>
+        <h2 class="section-title">Work History</h2>
+        <p class="section-subtitle">My professional journey in tech</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title"><a href="https://offplanproperties.ai/" target="_blank">OffplanProperties.ai / Zalinos Brokerage LLC</a></h3>
+              <span class="timeline-role">AI Engineer</span>
+            </div>
+            <span class="timeline-date"><i class="fa-regular fa-calendar"></i>Jan 2025 – Present</span>
           </div>
-          <div class="card-action">Jan 2025 – Present | Dubai, UAE</div>
+          <div class="timeline-content">
+            <ul>
+              <li>Shipped production LLM/RAG services with voice and multilingual support, resulting in <strong>35% increase</strong> in qualified leads and <strong>80% reduction</strong> in manual screening</li>
+              <li>Built Java Spring Boot microservices and Python FastAPI workers with Kafka/Redis, sustaining <strong>2k requests/minute</strong></li>
+              <li>Implemented LLMOps/MLOps using MLflow, Airflow, SageMaker, and LangSmith with evaluation harnesses</li>
+              <li>Deployed on AWS/GCP with Docker/K8s, implementing blue/green rollouts and CI/CD with GitHub Actions</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">LangChain</span>
+              <span class="tech-tag">GPT-4</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">Kubernetes</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">REST Information Technology</span>
-            <div class="role">Solutions Engineer</div>
-            <ul>
-              <li>Built ERP integrations using MySQL and MongoDB with resilient REST patterns, reducing post-deployment issues by <b>40%</b>.</li>
-              <li>Delivered customer-facing technical demos converting to pilots at <b>35%+ win rate</b>.</li>
-              <li>Integrated RESTful APIs and data pipelines across SQL and NoSQL systems, accelerating onboarding cycles.</li>
-              <li><b>Tech:</b> ERP, SQL, NoSQL, REST APIs, Node.js, MySQL, MongoDB, B2B SaaS</li>
-            </ul>
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title">REST Information Technology</h3>
+              <span class="timeline-role">Solutions Engineer</span>
+            </div>
+            <span class="timeline-date"><i class="fa-regular fa-calendar"></i>Nov 2024 – Jan 2025</span>
           </div>
-          <div class="card-action">Nov 2024 – Jan 2025 | Riyadh, Saudi Arabia</div>
+          <div class="timeline-content">
+            <ul>
+              <li>Built ERP integrations using MySQL and MongoDB with resilient REST patterns, reducing issues by <strong>40%</strong></li>
+              <li>Delivered customer-facing technical demos converting to pilots at <strong>35%+ win rate</strong></li>
+              <li>Integrated RESTful APIs and data pipelines across SQL and NoSQL systems</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">REST APIs</span>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title"><a href="https://www.valuelabs.com/" target="_blank">Valuelabs Solutions LLP / Shutterfly Project</a></span>
-            <div class="role">Full Stack Software Developer (Intern + Full Time)</div>
-            <ul>
-              <li>Designed Spring Boot services with Hibernate/JPA, reducing API latency by <b>30% (p95)</b> via caching and connection pooling.</li>
-              <li>Standardized security using Spring Security and OAuth2, implemented SAST/DAST gates with Checkmarx and Snyk.</li>
-              <li>Achieved <b>~90% line coverage</b> with JUnit/Mockito test suite, maintained quality gate using SonarQube.</li>
-              <li>Created RESTful APIs and dynamic web components using Angular, achieving <b>30% API performance boost</b>.</li>
-              <li><b>Tech:</b> Java, Spring Boot, Hibernate, Angular, REST APIs, JUnit, SonarQube, SQL, CI/CD</li>
-            </ul>
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title"><a href="https://www.valuelabs.com/" target="_blank">Valuelabs / Shutterfly Project</a></h3>
+              <span class="timeline-role">Full Stack Developer</span>
+            </div>
+            <span class="timeline-date"><i class="fa-regular fa-calendar"></i>Dec 2022 – Dec 2024</span>
           </div>
-          <div class="card-action">Dec 2022 – Dec 2024 | Hyderabad, India</div>
+          <div class="timeline-content">
+            <ul>
+              <li>Designed Spring Boot services with Hibernate/JPA, reducing API latency by <strong>30% (p95)</strong></li>
+              <li>Achieved <strong>~90% line coverage</strong> with JUnit/Mockito test suite using SonarQube</li>
+              <li>Created RESTful APIs and dynamic web components using Angular</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">Angular</span>
+              <span class="tech-tag">JUnit</span>
+              <span class="tech-tag">SonarQube</span>
+            </div>
+          </div>
         </div>
-
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section scrollspy">
-      <h3 class="page-title white-text teal">Projects</h3>
-      <div class="container">
-        <p class="flow-text">Production AI systems and enterprise solutions I've built:</p>
-        
-        <div class="row">
-          <!-- AI Agent Chatbot with GIF -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-image">
-                <img src="./assets/img/demo.gif" alt="AI RAG Chatbot Demo">
-              </div>
-              <div class="card-content">
-                <span class="card-title">AI Agent Chatbot</span>
-                <p>Full-stack conversational AI agent using LangChain and GPT-based NLP with multilingual support, voice/image uploads and AI-driven SQL generation.</p>
-                <p><b>Tech:</b> LangChain, GPT-4, Next.js, Node.js, Supabase, MySQL</p>
-                <small>Jan 2025 – Present</small>
-              </div>
-            </div>
+    <section id="projects" class="projects">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-code"></i>Projects</span>
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-subtitle">Production AI systems and enterprise solutions</p>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./assets/img/demo.gif" alt="AI RAG Chatbot">
           </div>
-
-          <!-- AI App Development with GIF -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-image">
-                <img src="./assets/img/App_Development.gif" alt="AI Application Development">
-              </div>
-              <div class="card-content">
-                <span class="card-title">AI Application Platform</span>
-                <p>End-to-end AI application development platform with automated deployment, model versioning and real-time inference capabilities.</p>
-                <p><b>Tech:</b> Python, FastAPI, React, Docker, Kubernetes, AWS</p>
-                <small>2024 – Present</small>
-              </div>
+          <div class="project-content">
+            <h3 class="project-title">AI Agent Chatbot</h3>
+            <p class="project-description">Full-stack conversational AI using LangChain and GPT with multilingual support, voice/image uploads, and AI-driven SQL generation.</p>
+            <div class="project-tech">
+              <span>LangChain</span>
+              <span>GPT-4</span>
+              <span>Next.js</span>
+              <span>Supabase</span>
             </div>
+            <span class="project-date">Jan 2025 – Present</span>
           </div>
+        </div>
 
-          <!-- AI Generator with GIF -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-image">
-                <img src="./assets/img/app_start.gif" alt="AI Content Generator">
-              </div>
-              <div class="card-content">
-                <span class="card-title">AI Content Generator</span>
-                <p>Automated content generation system using GPT models for SEO-optimized articles, property descriptions and marketing content.</p>
-                <p><b>Tech:</b> OpenAI GPT-4, Python, n8n, Midjourney, MySQL</p>
-                <small>2024 – Present</small>
-              </div>
-            </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./assets/img/App_Development.gif" alt="AI Application Platform">
           </div>
-
-          <!-- Property Recommendation -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">AI Property Recommendation</span>
-                <p>Real-time AI property recommendation engine with interactive map interface using Python and Rails with Redis and Kafka for match scoring.</p>
-                <p><b>Tech:</b> Python, Ruby on Rails, Redis, Kafka, React, Next.js</p>
-                <small>Jan 2025 – Present</small>
-              </div>
+          <div class="project-content">
+            <h3 class="project-title">AI Application Platform</h3>
+            <p class="project-description">End-to-end AI application development platform with automated deployment, model versioning and real-time inference.</p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>FastAPI</span>
+              <span>React</span>
+              <span>Docker</span>
             </div>
+            <span class="project-date">2024 – Present</span>
           </div>
+        </div>
 
-          <!-- WhatsApp AI Platform -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">WhatsApp AI Agent</span>
-                <p>Conversation workflows for WhatsApp that capture lead intent, validate phone via OTP and hand off to AI Agent for multilingual queries.</p>
-                <p><b>Tech:</b> n8n, Twilio WhatsApp, OpenAI, Next.js, Supabase</p>
-                <small>Feb 2025 – Present</small>
-              </div>
-            </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./assets/img/app_start.gif" alt="AI Content Generator">
           </div>
-
-          <!-- SEO Automation -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">SEO Automation Engine</span>
-                <p>End-to-end SEO content pipelines using n8n to generate, QA and publish long-form pages into CMS with image generation via Midjourney.</p>
-                <p><b>Tech:</b> n8n, Zapier, Botble CMS, Midjourney, OpenAI, MySQL</p>
-                <small>Jan 2025 – Present</small>
-              </div>
+          <div class="project-content">
+            <h3 class="project-title">AI Content Generator</h3>
+            <p class="project-description">Automated content generation using GPT models for SEO-optimized articles and marketing content with n8n workflows.</p>
+            <div class="project-tech">
+              <span>OpenAI</span>
+              <span>n8n</span>
+              <span>Midjourney</span>
+              <span>MySQL</span>
             </div>
+            <span class="project-date">2024 – Present</span>
           </div>
+        </div>
 
-          <!-- OCR Engine -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">OCR & Listing Ingestion</span>
-                <p>Global ingestion tool to parse PDFs, brochures, images and spreadsheets into a unified listing schema with human review loops.</p>
-                <p><b>Tech:</b> Python, FastAPI, OpenAI, Document Parsers, Cloudflare R2</p>
-                <small>Aug 2025 – Present</small>
-              </div>
+        <div class="project-card">
+          <div class="project-content">
+            <h3 class="project-title">WhatsApp AI Agent</h3>
+            <p class="project-description">Conversation workflows for WhatsApp that capture lead intent, validate phone via OTP and hand off to AI for multilingual queries.</p>
+            <div class="project-tech">
+              <span>Twilio</span>
+              <span>OpenAI</span>
+              <span>n8n</span>
+              <span>Next.js</span>
             </div>
+            <span class="project-date">Feb 2025 – Present</span>
           </div>
+        </div>
 
-          <!-- Fraud Detection -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">AI Fraud Detection</span>
-                <p>Full-stack fraud detection engine using Java Spring Boot and Angular to identify duplicate and fake listings using pattern recognition.</p>
-                <p><b>Tech:</b> Java, Spring Boot, Angular, PostgreSQL, Docker, K8s</p>
-                <small>Dec 2024 – Present</small>
-              </div>
+        <div class="project-card">
+          <div class="project-content">
+            <h3 class="project-title">AI Property Recommendation</h3>
+            <p class="project-description">Real-time AI recommendation engine with interactive map interface using Python and Redis for match scoring.</p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>Redis</span>
+              <span>Kafka</span>
+              <span>React</span>
             </div>
+            <span class="project-date">Jan 2025 – Present</span>
           </div>
+        </div>
 
-          <!-- Employee Management -->
-          <div class="col s12 m6 l4">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">Employee Management System</span>
-                <p>Angular/Spring Boot employee management system enabling CRUD operations with SQL queries. Responsive UI with 30% satisfaction increase.</p>
-                <p><b>Tech:</b> Angular, Spring Boot, SQL, REST APIs, Bootstrap</p>
-                <small>Jul 2023</small>
-              </div>
+        <div class="project-card">
+          <div class="project-content">
+            <h3 class="project-title">AI Fraud Detection</h3>
+            <p class="project-description">Full-stack fraud detection engine using Java Spring Boot and Angular to identify duplicate listings with pattern recognition.</p>
+            <div class="project-tech">
+              <span>Java</span>
+              <span>Spring Boot</span>
+              <span>Angular</span>
+              <span>PostgreSQL</span>
             </div>
+            <span class="project-date">Dec 2024 – Present</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section scrollspy">
-      <h3 class="page-title white-text teal">Skills</h3>
-      <div class="container">
-        <div class="row">
-          <div class="col s12 m6">
-            <div class="card">
-              <div class="card-content">
-                <h4>AI & Machine Learning</h4>
-                <p><b>LLMs:</b> GPT-3.5/4, Generative AI, CNNs, Transformers, NLP, NER, RAG, YOLO, T5, LangChain</p>
-                <p><b>MLOps:</b> MLflow, Airflow/Dagster, SageMaker, Model Registry, Feature Store, LangSmith, RAGAS</p>
-                <p><b>Vector DBs:</b> FAISS, Pinecone, Weaviate, Milvus</p>
-              </div>
-            </div>
-          </div>
+    <section id="skills" class="skills">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-gears"></i>Skills</span>
+        <h2 class="section-title">Technical Expertise</h2>
+        <p class="section-subtitle">Technologies and tools I work with</p>
+      </div>
+      
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4><i class="fa-solid fa-brain"></i>AI & Machine Learning</h4>
+          <p><strong>LLMs:</strong> GPT-3.5/4, Generative AI, CNNs, Transformers, NLP, NER, RAG, YOLO, T5, LangChain</p>
+          <p><strong>MLOps:</strong> MLflow, Airflow/Dagster, SageMaker, Model Registry, Feature Store, LangSmith, RAGAS</p>
+          <p><strong>Vector DBs:</strong> FAISS, Pinecone, Weaviate, Milvus</p>
+        </div>
 
-          <div class="col s12 m6">
-            <div class="card">
-              <div class="card-content">
-                <h4>Full-Stack Development</h4>
-                <p><b>Backend:</b> Java, Spring Boot, Python, FastAPI, Node.js, Hibernate/JPA, REST/GraphQL</p>
-                <p><b>Frontend:</b> React, Next.js, TypeScript, Angular, HTML/CSS, JavaScript</p>
-                <p><b>Databases:</b> PostgreSQL, MySQL, MongoDB, Neo4j, Redis, Elasticsearch</p>
-              </div>
-            </div>
-          </div>
+        <div class="skill-card">
+          <h4><i class="fa-solid fa-code"></i>Full-Stack Development</h4>
+          <p><strong>Backend:</strong> Java, Spring Boot, Python, FastAPI, Node.js, Hibernate/JPA, REST/GraphQL</p>
+          <p><strong>Frontend:</strong> React, Next.js, TypeScript, Angular, HTML/CSS, JavaScript</p>
+          <p><strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, Neo4j, Redis, Elasticsearch</p>
+        </div>
 
-          <div class="col s12 m6">
-            <div class="card">
-              <div class="card-content">
-                <h4>DevOps & Cloud</h4>
-                <p><b>Cloud:</b> AWS, GCP, Docker, Kubernetes, GitHub Actions, Jenkins, CI/CD</p>
-                <p><b>Infrastructure:</b> Linux, Nginx, Cloudflare, RabbitMQ, Kafka</p>
-                <p><b>Security:</b> OAuth2, Spring Security, CSP, HSTS, SRI, RBAC</p>
-              </div>
-            </div>
-          </div>
+        <div class="skill-card">
+          <h4><i class="fa-solid fa-cloud"></i>DevOps & Cloud</h4>
+          <p><strong>Cloud:</strong> AWS, GCP, Docker, Kubernetes, GitHub Actions, Jenkins, CI/CD</p>
+          <p><strong>Infrastructure:</strong> Linux, Nginx, Cloudflare, RabbitMQ, Kafka</p>
+          <p><strong>Security:</strong> OAuth2, Spring Security, CSP, HSTS, SRI, RBAC</p>
+        </div>
 
-          <div class="col s12 m6">
-            <div class="card">
-              <div class="card-content">
-                <h4>Certifications</h4>
-                <ul>
-                  <li>AWS Solutions Architect Associate</li>
-                  <li>IBM AI Engineering Professional Certificate</li>
-                  <li>AWS Cloud Practitioner</li>
-                  <li>Python for Everybody</li>
-                  <li>Google Digital Marketing</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div class="skill-card">
+          <h4><i class="fa-solid fa-certificate"></i>Certifications</h4>
+          <ul>
+            <li>AWS Solutions Architect Associate</li>
+            <li>IBM AI Engineering Professional Certificate</li>
+            <li>AWS Cloud Practitioner</li>
+            <li>Python for Everybody</li>
+            <li>Google Digital Marketing</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="section scrollspy">
-      <h3 class="page-title white-text teal">Education</h3>
-      <div class="container">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title"><a href="https://www.cbit.ac.in/" target="_blank">Chaitanya Bharathi Institute of Technology (O.U)</a></span>
-            <p class="brown-text">Hyderabad, India | May 2023</p>
-            <p><b>Degree:</b> Bachelor of Engineering (B.E.) in Computer Science Engineering</p>
-            <p><b>CGPA:</b> 8.52/10.0</p>
-            <p><b>Coursework:</b> Data Structures, Machine Learning, AI, Operating Systems, Database Systems, Web Development</p>
-            <p><b>Academic Project:</b> GAN denoising; benchmarked vs classical filters; F1 ≥ 0.99 on custom noisy dataset</p>
-          </div>
+    <section id="education" class="education">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-graduation-cap"></i>Education</span>
+        <h2 class="section-title">Academic Background</h2>
+        <p class="section-subtitle">My educational journey</p>
+      </div>
+      
+      <div class="education-grid">
+        <div class="education-card">
+          <h4>Chaitanya Bharathi Institute of Technology (O.U)</h4>
+          <p class="location"><i class="fa-solid fa-location-dot"></i> Hyderabad, India | May 2023</p>
+          <p><strong>Degree:</strong> Bachelor of Engineering (B.E.) in Computer Science Engineering</p>
+          <p><strong>CGPA:</strong> 8.52/10.0</p>
+          <p><strong>Coursework:</strong> Data Structures, Machine Learning, AI, Operating Systems, Databases</p>
         </div>
 
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Central Board of Secondary Education (CBSE)</span>
-            <p class="brown-text">International Indian School, Riyadh, Saudi Arabia | Apr 2019</p>
-            <p><b>Aggregate:</b> 91.8/100</p>
-            <p><b>Specialization:</b> Mathematics, Physics, Chemistry & Computer Science</p>
-          </div>
+        <div class="education-card">
+          <h4>International Indian School (CBSE)</h4>
+          <p class="location"><i class="fa-solid fa-location-dot"></i> Riyadh, Saudi Arabia | Apr 2019</p>
+          <p><strong>Aggregate:</strong> 91.8/100</p>
+          <p><strong>Specialization:</strong> Mathematics, Physics, Chemistry & Computer Science</p>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section scrollspy">
-      <h3 class="page-title white-text teal">Contact</h3>
-      <div class="container">
-        <p>
-          <a class="btn-floating"><i class="fa fa-phone"></i></a>
-          <span>+971-54-352-4687</span>
-        </p>
-        <p>
-          <a href="mailto:eng.ahmedraoofuddin@gmail.com" class="btn-floating"><i class="fa fa-envelope"></i></a>
-          <a href="mailto:eng.ahmedraoofuddin@gmail.com">eng.ahmedraoofuddin@gmail.com</a>
-        </p>
-        <p>
-          <a href="https://github.com/AhmedRaoofuddin" target="_blank" class="btn-floating"><i class="fa fa-github"></i></a>
-          <a href="https://github.com/AhmedRaoofuddin" target="_blank">github.com/AhmedRaoofuddin</a>
-        </p>
-        <p>
-          <a href="https://www.linkedin.com/in/ahmed-raoofuddin" target="_blank" class="btn-floating"><i class="fa fa-linkedin"></i></a>
-          <a href="https://www.linkedin.com/in/ahmed-raoofuddin" target="_blank">linkedin.com/in/ahmed-raoofuddin</a>
-        </p>
+    <section id="contact" class="contact">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-envelope"></i>Contact</span>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-subtitle">Feel free to reach out for opportunities or collaboration</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <span class="label">Phone</span>
+            <span class="value">+971-54-352-4687</span>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <span class="label">Email</span>
+            <span class="value"><a href="mailto:eng.ahmedraoofuddin@gmail.com">eng.ahmedraoofuddin@gmail.com</a></span>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fa-brands fa-github"></i>
+          <div>
+            <span class="label">GitHub</span>
+            <span class="value"><a href="https://github.com/AhmedRaoofuddin" target="_blank">github.com/AhmedRaoofuddin</a></span>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fa-brands fa-linkedin"></i>
+          <div>
+            <span class="label">LinkedIn</span>
+            <span class="value"><a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank">linkedin.com/in/ahmed-raoofuddin</a></span>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Typed.js -->
+  <!-- Scripts -->
   <script src="./assets/vendor/typed.js/typed.min.js"></script>
   <script>
-    var typed = new Typed('.typing', {
-      strings: ["AI Engineer", "Full-Stack Developer", "Solutions Architect", "ML Engineer"],
+    // Typed.js Animation
+    new Typed('.typing', {
+      strings: ['AI Engineer', 'Full-Stack Developer', 'ML Engineer', 'Solutions Architect'],
       loop: true,
       typeSpeed: 80,
-      backSpeed: 40,
+      backSpeed: 50,
       backDelay: 2000
     });
-  </script>
 
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- Materialize JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-  
-  <script>
-    $(document).ready(function() {
-      // Initialize scrollspy
-      $('.scrollspy').scrollSpy();
-      
-      // Mobile navigation
-      $('.button-collapse').sideNav({
-        menuWidth: 260,
-        edge: 'left',
-        closeOnClick: true
-      });
-      
-      // Smooth scroll for anchor links
-      $('a[href^="#"]').on('click', function(e) {
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        var target = $(this.getAttribute('href'));
-        if (target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top - 60
-          }, 500);
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Active Nav Link
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.sidebar-nav a');
+      
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= sectionTop - 100) {
+          current = section.getAttribute('id');
         }
       });
       
-      // Active nav state
-      $(window).on('scroll', function() {
-        var scrollPos = $(window).scrollTop();
-        $('section').each(function() {
-          var top = $(this).offset().top - 100;
-          var bottom = top + $(this).outerHeight();
-          var id = $(this).attr('id');
-          if (scrollPos >= top && scrollPos < bottom) {
-            $('nav a').removeClass('active');
-            $('nav a[href="#' + id + '"]').addClass('active');
-          }
-        });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
       });
     });
   </script>
 </body>
-
 </html>
