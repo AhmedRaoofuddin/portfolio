@@ -615,6 +615,19 @@
     
     function highlightNavOnScroll() {
       const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Check if at bottom of page - highlight last section (contact)
+      if (scrollY + windowHeight >= documentHeight - 50) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#contact') {
+            link.classList.add('active');
+          }
+        });
+        return;
+      }
       
       sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
