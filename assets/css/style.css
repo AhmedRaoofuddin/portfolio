@@ -1788,18 +1788,34 @@ nav.hide-on-large,
 
 /* Tablet & Small Desktop */
 @media (max-width: 992px) {
-  /* Base styles for mobile */
+  /* Base styles for mobile - fix background color */
   html, body {
     background: var(--primary) !important;
     overflow-x: hidden;
   }
   
+  /* Ensure no purple/pink background shows */
+  body {
+    background-color: #0a1628 !important;
+  }
+  
   .main-content {
-    margin-left: 0;
+    margin-left: 0 !important;
     padding-top: 70px;
-    background: var(--gradient-2) !important;
-    width: 100%;
+    background: linear-gradient(135deg, #0a1628 0%, #162033 100%) !important;
+    width: 100% !important;
+    max-width: 100vw;
     overflow-x: hidden;
+  }
+  
+  /* Fix for sidebar not hiding */
+  .sidebar {
+    display: none !important;
+  }
+  
+  /* Show mobile header */
+  .mobile-header {
+    display: flex !important;
   }
   
   /* All sections mobile padding */
@@ -2139,4 +2155,5 @@ section {
   }
 }
 
+}
 }
