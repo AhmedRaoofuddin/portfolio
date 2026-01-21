@@ -82,6 +82,7 @@ body {
 html, body {
   margin: 0;
   padding: 0;
+  background: var(--primary);
 }
 
 /* ============================================
@@ -161,7 +162,7 @@ a:hover {
   position: fixed;
   left: 0;
   top: 0;
-  width: 260px;
+  width: 261px;
   height: 100vh;
   background: var(--gradient-2);
   padding: 30px 20px;
@@ -169,7 +170,6 @@ a:hover {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  box-shadow: 5px 0 0 0 var(--primary);
 }
 
 .sidebar-profile {
