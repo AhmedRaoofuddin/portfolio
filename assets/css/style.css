@@ -75,6 +75,13 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
 /* ============================================
@@ -162,6 +169,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  box-shadow: 5px 0 0 0 var(--primary);
 }
 
 .sidebar-profile {
@@ -432,6 +440,7 @@ a:hover {
   overflow-x: hidden;
   position: relative;
   transition: margin-left 0.3s ease;
+  background: var(--gradient-2);
 }
 
 /* Responsive Layout - Sidebar to Content */
