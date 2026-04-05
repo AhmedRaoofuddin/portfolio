@@ -8,7 +8,7 @@
   <title>Ahmed Raoofuddin | AI Engineer & Full-Stack Developer | Dubai UAE</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Ahmed Raoofuddin — AI Engineer & Full-Stack Developer in Dubai, UAE. Building production Agentic AI systems, multi-agent orchestration platforms, LLM/RAG pipelines with Claude Opus/Sonnet 4.6, GPT-5, Gemini 2.5 Pro, MCP, LangGraph.">
+  <meta name="description" content="Ahmed Raoofuddin, AI Engineer & Full-Stack Developer in Dubai, UAE. Building production Agentic AI systems, multi-agent orchestration platforms, LLM/RAG pipelines with Claude Opus/Sonnet 4.6, GPT-5, Gemini 2.5 Pro, MCP, LangGraph.">
   <meta name="keywords" content="AI Engineer Dubai, Agentic AI, Claude 4.6, GPT-5, MCP, LangGraph, Multi-Agent Systems, LLM Engineer, RAG Systems, LangChain Expert, Full-Stack Developer UAE, Java Spring Boot, AWS Solutions Architect">
   <meta name="author" content="Ahmed Raoofuddin">
 
@@ -67,26 +67,40 @@
       <img src="./assets/img/ahmed-profile.jpg" alt="Ahmed">
       <span>Ahmed R.</span>
     </div>
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+    <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu">
       <i class="fa-solid fa-bars"></i>
     </button>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()">
       <i class="fa-solid fa-xmark"></i>
     </button>
-    <ul>
-      <li><a href="#home" data-section="home" onclick="toggleMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
-      <li><a href="#about" data-section="about" onclick="toggleMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
-      <li><a href="#resume" data-section="resume" onclick="toggleMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
-      <li><a href="#portfolio" data-section="portfolio" onclick="toggleMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
-      <li><a href="#certifications" data-section="certifications" onclick="toggleMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
-      <li><a href="#education" data-section="education" onclick="toggleMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
-      <li><a href="#blog" data-section="blog" onclick="toggleMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
-      <li><a href="#contact" data-section="contact" onclick="toggleMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
-    </ul>
-  </div>
+    <div class="mobile-menu-profile">
+      <img src="./assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home" data-section="home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="#about" data-section="about" onclick="closeMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="#resume" data-section="resume" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="#portfolio" data-section="portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="#certifications" data-section="certifications" onclick="closeMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="#education" data-section="education" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="#blog" data-section="blog" onclick="closeMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="#contact" data-section="contact" onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
 
   <!-- ============ MAIN CONTENT ============ -->
   <main class="main-content">
@@ -188,9 +202,9 @@
 
       <div class="timeline">
         <div class="timeline-item">
-          <span class="timeline-date">Feb 2026 – Present</span>
+          <span class="timeline-date">Feb 2026 - Present</span>
           <h4>AI Engineer</h4>
-          <p class="company">Metamorphic Design Company — Dubai, UAE</p>
+          <p class="company">Metamorphic Design Company, Dubai, UAE</p>
           <ul>
             <li>Owned end-to-end full-stack engineering across 10+ systems: MetaForge ERP, vendor procurement platform, company website, VR/3D visualization pipeline, and AR glass integration</li>
             <li>Built intelligent automation suite with 10+ n8n workflows, voice-enabled assistants (Twilio/VOIP), and document control systems with Google Drive and vector DB integration</li>
@@ -203,12 +217,12 @@
         </div>
 
         <div class="timeline-item">
-          <span class="timeline-date">Jan 2025 – Jan 2026</span>
+          <span class="timeline-date">Jan 2025 - Jan 2026</span>
           <h4>AI Engineer</h4>
-          <p class="company">OffplanProperties.ai / Zalinos Brokerage LLC — Dubai, UAE</p>
+          <p class="company">OffplanProperties.ai / Zalinos Brokerage LLC, Dubai, UAE</p>
           <ul>
-            <li>Shipped production LLM/RAG services (voice + multilingual); +35% qualified leads, −80% manual screening, p95 &lt; 800ms</li>
-            <li>Built Java Spring Boot microservices + Python FastAPI workers with Kafka/Redis; sustained 1.5–2k req/min during campaigns</li>
+            <li>Shipped production LLM/RAG services (voice + multilingual); +35% qualified leads, -80% manual screening, p95 &lt; 800ms</li>
+            <li>Built Java Spring Boot microservices + Python FastAPI workers with Kafka/Redis; sustained 1.5-2k req/min during campaigns</li>
             <li>Implemented LLMOps/MLOps (MLflow, Airflow, SageMaker, LangSmith, Langfuse, RAGAS) with eval harnesses</li>
             <li>Deployed on AWS/GCP with Docker/K8s, blue/green rollouts and CI/CD; reduced change failure by 40%</li>
           </ul>
@@ -218,11 +232,11 @@
         </div>
 
         <div class="timeline-item">
-          <span class="timeline-date">Nov 2024 – Jan 2025</span>
+          <span class="timeline-date">Nov 2024 - Jan 2025</span>
           <h4>Solutions Engineer</h4>
-          <p class="company">REST Information Technology — Riyadh, Saudi Arabia</p>
+          <p class="company">REST Information Technology, Riyadh, Saudi Arabia</p>
           <ul>
-            <li>Built ERP integrations (MySQL/MongoDB) with resilient REST patterns; −40% post-deployment issues, +30% solution fit</li>
+            <li>Built ERP integrations (MySQL/MongoDB) with resilient REST patterns; -40% post-deployment issues, +30% solution fit</li>
             <li>Delivered customer-facing technical demos converting to pilots at 35%+ win rate</li>
             <li>Partnered with sales &amp; technical teams to ensure smooth implementations and optimized system performance</li>
           </ul>
@@ -232,11 +246,11 @@
         </div>
 
         <div class="timeline-item">
-          <span class="timeline-date">Dec 2022 – Dec 2024</span>
+          <span class="timeline-date">Dec 2022 - Dec 2024</span>
           <h4>Full Stack Software Developer</h4>
-          <p class="company">Valuelabs Solutions / Shutterfly Project — Hyderabad, India</p>
+          <p class="company">Valuelabs Solutions / Shutterfly Project, Hyderabad, India</p>
           <ul>
-            <li>Designed Spring Boot services with Hibernate/JPA; −30% API latency (p95), −25% error budget burn via caching</li>
+            <li>Designed Spring Boot services with Hibernate/JPA; -30% API latency (p95), -25% error budget burn via caching</li>
             <li>Standardized security (Spring Security, OAuth2) and SAST/DAST gates (Checkmarx, Snyk); resolved 90% vulns pre-prod</li>
             <li>JUnit/Mockito test suite to ~90% line coverage; SonarQube quality gate maintained across microservices</li>
             <li>Angular upgrade path and API contract hardening (OpenAPI), cutting regression defects by 25%</li>
@@ -297,7 +311,7 @@
             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="Cortivex">
           </div>
           <div class="portfolio-content">
-            <h3>Cortivex — AI Agent Pipeline Orchestration</h3>
+            <h3>Cortivex, AI Agent Pipeline Orchestration</h3>
             <p>Production-grade multi-agent orchestration system (100% TypeScript) with DAG-based pipelines, self-learning engine (34% faster after 50 runs), filesystem-based mesh coordination, 17 MCP tools, 15 Claude Code skills (13,500+ lines), and 20+ agent node types across quality, security, testing, DevOps.</p>
             <div class="portfolio-tech">
               <span>TypeScript</span><span>React 19</span><span>MCP</span><span>Claude 4.6</span><span>Multi-Agent</span>
@@ -449,7 +463,7 @@
         <div class="cert-card"><i class="fa-brands fa-aws"></i><span>AWS Solutions Architect Associate</span></div>
         <div class="cert-card"><i class="fa-brands fa-aws"></i><span>AWS Cloud Practitioner</span></div>
         <div class="cert-card"><i class="fa-brands fa-google"></i><span>Google Cloud Professional Cloud Architect</span></div>
-        <div class="cert-card"><i class="fa-solid fa-shield-halved"></i><span>CISSP — ISC2</span></div>
+        <div class="cert-card"><i class="fa-solid fa-shield-halved"></i><span>CISSP, ISC2</span></div>
         <div class="cert-card"><i class="fa-solid fa-lock"></i><span>Certified Information Security Manager (CISM)</span></div>
       </div>
 
@@ -461,21 +475,21 @@
         <div class="cert-card"><i class="fa-solid fa-link"></i><span>DeepLearning.AI LangChain/LangGraph Specialization</span></div>
         <div class="cert-card"><i class="fa-brands fa-microsoft"></i><span>Microsoft Azure AI Essentials</span></div>
         <div class="cert-card"><i class="fa-solid fa-brain"></i><span>AI Projects with Python, TensorFlow, NLTK</span></div>
-        <div class="cert-card"><i class="fa-solid fa-code-branch"></i><span>Generative AI Java Apps — LangChain4j</span></div>
+        <div class="cert-card"><i class="fa-solid fa-code-branch"></i><span>Generative AI Java Apps, LangChain4j</span></div>
         <div class="cert-card"><i class="fa-solid fa-database"></i><span>Rust LLMOps</span></div>
       </div>
 
       <div class="cert-grid" id="cert-dev">
         <div class="cert-card"><i class="fa-brands fa-python"></i><span>Advanced Python: Build AI Applications</span></div>
         <div class="cert-card"><i class="fa-brands fa-java"></i><span>Advanced Spring: Deploy to AWS, Azure, GCP</span></div>
-        <div class="cert-card"><i class="fa-brands fa-js"></i><span>JavaScript Foundations — Mozilla</span></div>
+        <div class="cert-card"><i class="fa-brands fa-js"></i><span>JavaScript Foundations, Mozilla</span></div>
         <div class="cert-card"><i class="fa-brands fa-github"></i><span>Practical GitHub Actions</span></div>
         <div class="cert-card"><i class="fa-brands fa-python"></i><span>Python for Everybody</span></div>
         <div class="cert-card"><i class="fa-solid fa-snowflake"></i><span>Snowflake Data Engineering</span></div>
       </div>
 
       <div class="cert-grid" id="cert-mgmt">
-        <div class="cert-card"><i class="fa-solid fa-building"></i><span>IT Architecture — CompTIA</span></div>
+        <div class="cert-card"><i class="fa-solid fa-building"></i><span>IT Architecture, CompTIA</span></div>
         <div class="cert-card"><i class="fa-solid fa-server"></i><span>ServiceNow ITSM Specialist</span></div>
         <div class="cert-card"><i class="fa-brands fa-atlassian"></i><span>Atlassian IT Service Management</span></div>
         <div class="cert-card"><i class="fa-solid fa-diagram-project"></i><span>Program Management Professional</span></div>
@@ -612,6 +626,54 @@
             </div>
             <h3>FAISS vs Pinecone vs Weaviate vs ChromaDB: A Real Benchmark</h3>
             <p>I ran the same 1M-document RAG workload across all four. Here's what I found on latency, recall, cost, and operability.</p>
+            <span class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="./blog/prompt-engineering-2026.html" class="blog-card">
+          <div class="blog-image">
+            <span class="blog-category">Prompting</span>
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop" alt="Prompt Engineering">
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> Jan 8, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 9 min read</span>
+            </div>
+            <h3>Prompt Engineering in 2026: What Still Works, What Doesn't</h3>
+            <p>Hands-on patterns for prompting Claude 4.6, GPT-5, and Gemini 2.5 Pro in production. Few-shot is dead. Structured outputs are the future.</p>
+            <span class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="./blog/vr-ar-for-interior-design.html" class="blog-card">
+          <div class="blog-image">
+            <span class="blog-category">VR / AR</span>
+            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=600&h=400&fit=crop" alt="VR AR Pipeline">
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> Dec 18, 2025</span>
+              <span><i class="fa-regular fa-clock"></i> 10 min read</span>
+            </div>
+            <h3>Building a VR and AR Pipeline for Interior Design Clients</h3>
+            <p>Inside the production 8K rendering and Aria Gen 2 AR glass pipeline I built at Metamorphic for on-site client measurements and immersive walkthroughs.</p>
+            <span class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+        <a href="./blog/n8n-automation-playbook.html" class="blog-card">
+          <div class="blog-image">
+            <span class="blog-category">Automation</span>
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop" alt="n8n Automation">
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> Dec 5, 2025</span>
+              <span><i class="fa-regular fa-clock"></i> 11 min read</span>
+            </div>
+            <h3>The n8n Automation Playbook: 10+ Workflows in Production</h3>
+            <p>Real-world patterns for building reliable n8n automation suites. WhatsApp OTP, Google Drive to vector DB ingestion, content QA, scheduled health checks.</p>
             <span class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
           </div>
         </a>
@@ -790,10 +852,21 @@
     });
   });
 
-  // Mobile menu toggle
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('active');
+  // Mobile drawer menu
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('active');
+    document.getElementById('mobileMenuOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.getElementById('mobileMenuOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMobileMenu();
+  });
 
   // Contact form handler (mailto fallback)
   function handleContactSubmit(e) {

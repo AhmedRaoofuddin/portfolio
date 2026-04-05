@@ -37,19 +37,34 @@
 
   <header class="mobile-header">
     <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
-    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+    <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
   </header>
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-xmark"></i></button>
-    <ul>
-      <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
-      <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
-      <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
-      <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
-      <li><a href="../index.html#blog"><i class="fa-solid fa-book-open"></i>Blog</a></li>
-      <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
-    </ul>
-  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-menu-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications" onclick="closeMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active" onclick="closeMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact" onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
 
   <main class="main-content">
     <section class="section active">
@@ -69,20 +84,20 @@
         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop" alt="MCP" class="blog-post-hero">
 
         <div class="blog-post-content">
-          <p>When I started building <strong>Cortivex</strong> — an AI agent pipeline orchestration system — I needed a way for agents to coordinate, share tools, and safely interact with a filesystem. The <strong>Model Context Protocol (MCP)</strong> turned out to be the backbone that made it all work.</p>
+          <p>When I started building <strong>Cortivex</strong>, an AI agent pipeline orchestration system, I needed a way for agents to coordinate, share tools, and safely interact with a filesystem. The <strong>Model Context Protocol (MCP)</strong> turned out to be the backbone that made it all work.</p>
 
           <p>In this post I'll walk through what MCP is, why it matters for multi-agent systems, and share concrete lessons from building 17 MCP tools in production.</p>
 
           <h2>What is MCP?</h2>
           <p>The Model Context Protocol is Anthropic's open standard for connecting AI models to tools, data sources, and other systems. Think of it as <strong>"USB-C for LLMs"</strong>: a single protocol that lets Claude (and other models) consume any tool that speaks MCP, without bespoke glue code per integration.</p>
 
-          <p>Before MCP, every tool integration was a snowflake — custom prompts, custom parsers, custom error handling. With MCP you get:</p>
+          <p>Before MCP, every tool integration was a snowflake, custom prompts, custom parsers, custom error handling. With MCP you get:</p>
 
           <ul>
-            <li><strong>Structured tool discovery</strong> — agents ask "what can I do?" and receive a typed schema</li>
-            <li><strong>Bidirectional context</strong> — tools can push notifications and progress updates back to the model</li>
-            <li><strong>Composable servers</strong> — mix and match tool providers without rewriting your agent</li>
-            <li><strong>Transport-agnostic</strong> — stdio, HTTP, WebSocket, all work with the same protocol</li>
+            <li><strong>Structured tool discovery</strong>, agents ask "what can I do?" and receive a typed schema</li>
+            <li><strong>Bidirectional context</strong>, tools can push notifications and progress updates back to the model</li>
+            <li><strong>Composable servers</strong>, mix and match tool providers without rewriting your agent</li>
+            <li><strong>Transport-agnostic</strong>, stdio, HTTP, WebSocket, all work with the same protocol</li>
           </ul>
 
           <h2>Why Multi-Agent Systems Need MCP</h2>
@@ -95,7 +110,7 @@
           <p>MCP replaces that mess with a single registry that every agent queries at runtime.</p>
 
           <h2>Lesson 1: Design Tools Around Outcomes, Not API Calls</h2>
-          <p>My first draft of Cortivex's MCP tools was a thin wrapper over shell commands. Agents had tools like <code>run_command</code>, <code>read_file</code>, <code>write_file</code>. It worked, but the agents behaved badly — they'd read the same file 10 times, retry failed commands blindly, and forget what they'd already learned.</p>
+          <p>My first draft of Cortivex's MCP tools was a thin wrapper over shell commands. Agents had tools like <code>run_command</code>, <code>read_file</code>, <code>write_file</code>. It worked, but the agents behaved badly, they'd read the same file 10 times, retry failed commands blindly, and forget what they'd already learned.</p>
 
           <p>The fix was to design tools around <strong>outcomes</strong>:</p>
 
@@ -113,7 +128,7 @@ extract_knowledge_from_docs(paths: Path[], topics: string[])</code></pre>
           <h2>Lesson 2: Let Tools Describe Their Own Guardrails</h2>
           <p>Each MCP tool in Cortivex declares its own permission manifest: which paths it can read, which it can write, whether it's idempotent, whether it can be retried, and whether it needs human approval for certain inputs.</p>
 
-          <p>The orchestration layer enforces these declarations, which means <strong>the agent doesn't have to be trusted</strong> — the protocol itself is the sandbox. This was the single biggest unlock for running agents unattended.</p>
+          <p>The orchestration layer enforces these declarations, which means <strong>the agent doesn't have to be trusted</strong>, the protocol itself is the sandbox. This was the single biggest unlock for running agents unattended.</p>
 
           <h2>Lesson 3: Content-Hash Everything</h2>
           <p>In a multi-agent DAG, two agents will often analyze the same file. Naively, each agent re-runs the analysis, burning tokens and time. Cortivex tags every tool output with a SHA-256 of its input, and the mesh layer dedupes. 12,500x speedup on some pipelines.</p>
@@ -133,9 +148,9 @@ learning: enabled</code></pre>
           <p>…and Cortivex handles the rest: tool discovery via MCP, DAG scheduling, mesh coordination to prevent agents overwriting each other, content-hashed dedup, and a self-learning loop that makes pipelines 34% faster after 50 runs.</p>
 
           <h2>What's Next</h2>
-          <p>MCP is early but moving fast. The ecosystem is exploding — dozens of new servers land every week. If you're building agents in 2026 and you're not using MCP, you're writing glue code that will be obsolete in six months.</p>
+          <p>MCP is early but moving fast. The ecosystem is exploding, dozens of new servers land every week. If you're building agents in 2026 and you're not using MCP, you're writing glue code that will be obsolete in six months.</p>
 
-          <p>Next post: <strong>From Naive RAG to Agentic RAG</strong> — how I moved 300k+ pages from simple vector search to full agentic retrieval.</p>
+          <p>Next post: <strong>From Naive RAG to Agentic RAG</strong>, how I moved 300k+ pages from simple vector search to full agentic retrieval.</p>
         </div>
       </div>
     </section>

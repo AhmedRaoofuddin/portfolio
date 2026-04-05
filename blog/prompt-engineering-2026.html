@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Engineering in 2026: What Still Works, What Doesn't | Ahmed Raoofuddin</title>
+  <meta name="description" content="Hands-on patterns for prompting Claude 4.6, GPT-5, and Gemini 2.5 Pro in production. Few-shot is dead. Structured outputs and tool calling are the future.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
+    <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-menu-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications" onclick="closeMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active" onclick="closeMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact" onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <section class="section active">
+      <div class="blog-post-wrap">
+        <a href="../index.html#blog" class="blog-post-back"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+
+        <div class="blog-post-header">
+          <span class="blog-post-category">Prompting</span>
+          <h1 class="blog-post-title">Prompt Engineering in 2026: What Still Works, What Doesn't</h1>
+          <div class="blog-post-meta">
+            <span><i class="fa-regular fa-calendar"></i> January 8, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 9 min read</span>
+            <span><i class="fa-regular fa-user"></i> Ahmed Raoofuddin</span>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=600&fit=crop" alt="Prompt Engineering" class="blog-post-hero">
+
+        <div class="blog-post-content">
+          <p>Two years ago, prompt engineering meant stuffing a wall of few-shot examples into your context window and hoping for the best. In 2026, the game has changed completely. Models are bigger, smarter, and handle instructions directly. The techniques that worked on GPT-3.5 are often counterproductive on Claude Opus 4.6.</p>
+
+          <p>Here's what I've learned shipping production prompts across three frontier models over the past year.</p>
+
+          <h2>What Still Works</h2>
+
+          <h3>1. Clear Role and Task Definition</h3>
+          <p>The single most effective technique remains the simplest: tell the model exactly what role it is playing and what outcome you want. Not "you are a helpful assistant" but something concrete:</p>
+
+          <pre><code>You are a senior real estate data analyst for the Dubai market.
+Your task is to produce a JSON summary of the three top-matching
+listings for the user's query, ranked by relevance.</code></pre>
+
+          <p>This alone often beats elaborate prompt tricks.</p>
+
+          <h3>2. Structured Output (JSON Mode, Tool Calling)</h3>
+          <p>Free-form text outputs are fragile. JSON schema enforcement is not. Every major model now supports native structured outputs: Anthropic's tool use, OpenAI's JSON mode and function calling, Google's structured output mode. Use them.</p>
+
+          <p>In my Cortivex pipelines, every agent call goes through a typed schema. Parse errors dropped from around 4 percent to under 0.1 percent when I switched from prompt formatting tricks to native structured output.</p>
+
+          <h3>3. XML Tags for Sectioning</h3>
+          <p>Anthropic's models in particular love XML tags. Wrapping instructions, examples, and context in distinct tags helps the model separate concerns:</p>
+
+          <pre><code>&lt;instructions&gt;
+Classify the user's intent.
+&lt;/instructions&gt;
+
+&lt;context&gt;
+Previous conversation history goes here.
+&lt;/context&gt;
+
+&lt;query&gt;
+{user_question}
+&lt;/query&gt;</code></pre>
+
+          <p>This is more effective than markdown headers in my tests, especially for Claude.</p>
+
+          <h2>What Has Stopped Working</h2>
+
+          <h3>1. Massive Few-Shot Example Dumps</h3>
+          <p>Five years ago, adding ten examples was a cheat code. Today, with reasoning models, it often hurts. The model pattern-matches too strongly to the examples and loses the plot on edge cases.</p>
+
+          <p>Two or three diverse examples are still helpful for calibration. Ten are not.</p>
+
+          <h3>2. "You are GPT-4, the smartest AI"</h3>
+          <p>Flattery prompts were always dubious. In 2026, they actively backfire on Claude and GPT-5. The models are tuned to recognize and ignore performative praise.</p>
+
+          <h3>3. "Let's think step by step"</h3>
+          <p>Chain-of-thought prompting as a phrase is obsolete. Modern reasoning models do this natively, and explicitly telling them to often makes the output more verbose without improving quality. Use the model's reasoning mode flags instead.</p>
+
+          <h2>The New Playbook</h2>
+
+          <h3>1. Prompts Are Code, Not Spells</h3>
+          <p>Treat every prompt like a function. Version it, test it, monitor it. I version prompts in MLflow with the exact model snapshot they were tuned against, and re-run the golden set every time either changes.</p>
+
+          <h3>2. Caching Is Your Best Friend</h3>
+          <p>Prompt caching (Anthropic's cache_control, OpenAI's cached prefixes) can reduce cost by 80 percent for long system prompts. Structure your prompts with the stable parts first so they can be cached:</p>
+
+          <pre><code>[STABLE SYSTEM PROMPT]  &lt;- cached
+[STABLE INSTRUCTIONS]   &lt;- cached
+[DYNAMIC CONTEXT]       &lt;- not cached
+[USER QUERY]            &lt;- not cached</code></pre>
+
+          <h3>3. Evaluation Is Non-Negotiable</h3>
+          <p>You can't improve what you don't measure. Every prompt change in my production stack runs against a golden set of at least 200 examples. If accuracy drops, the change is reverted. Simple as that.</p>
+
+          <h3>4. Tool Calling Over Prompt Engineering</h3>
+          <p>Instead of trying to prompt the model to extract structured data, give it a tool and let it call it. The model does the extraction naturally, the response is typed, and you skip a whole class of parsing bugs.</p>
+
+          <h2>Model-Specific Quirks</h2>
+
+          <p><strong>Claude Opus 4.6</strong>: Loves XML tags. Responds very well to "think through the problem before answering." Best in class for long documents.</p>
+
+          <p><strong>GPT-5</strong>: Strongest with JSON mode and function calling. Shortest, most concise outputs. Best for cost-sensitive workloads.</p>
+
+          <p><strong>Gemini 2.5 Pro</strong>: Phenomenal context length and multimodal handling. Best for video and document understanding. Slightly more verbose than the others.</p>
+
+          <h2>The Mindset</h2>
+          <blockquote>Stop thinking of prompts as magic incantations. Start thinking of them as typed interfaces to an unreliable function. You'd never ship a typed function without tests. Don't ship a prompt without them either.</blockquote>
+
+          <p>Prompt engineering in 2026 looks more like software engineering and less like poetry. That is a good thing.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('active');
+    document.getElementById('mobileMenuOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.getElementById('mobileMenuOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
+</script>
+</body>
+</html>

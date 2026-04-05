@@ -37,16 +37,34 @@
 
   <header class="mobile-header">
     <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
-    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+    <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
   </header>
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-xmark"></i></button>
-    <ul>
-      <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
-      <li><a href="../index.html#blog"><i class="fa-solid fa-book-open"></i>Blog</a></li>
-      <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
-    </ul>
-  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-menu-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications" onclick="closeMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active" onclick="closeMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact" onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
 
   <main class="main-content">
     <section class="section active">
@@ -70,20 +88,20 @@
 
           <p>I hear it in every AI meetup. I heard it when I joined Offplan with my Java/Spring Boot background. And I've spent the last year proving it wrong in production.</p>
 
-          <p>Here's how Java enterprise backends and modern LLM workflows coexist beautifully — and why your Spring Boot skills are more valuable in the AI era, not less.</p>
+          <p>Here's how Java enterprise backends and modern LLM workflows coexist beautifully, and why your Spring Boot skills are more valuable in the AI era, not less.</p>
 
           <h2>Why Java for LLMs?</h2>
           <p>Three reasons:</p>
           <ul>
-            <li><strong>Type safety</strong> — JSON schemas become real Java records with compile-time checks</li>
-            <li><strong>Observability</strong> — Micrometer, OpenTelemetry, and Spring Actuator give you production-grade metrics out of the box</li>
-            <li><strong>Transactions</strong> — your LLM-driven workflows run inside the same transactional boundary as your database writes</li>
+            <li><strong>Type safety</strong>, JSON schemas become real Java records with compile-time checks</li>
+            <li><strong>Observability</strong>, Micrometer, OpenTelemetry, and Spring Actuator give you production-grade metrics out of the box</li>
+            <li><strong>Transactions</strong>, your LLM-driven workflows run inside the same transactional boundary as your database writes</li>
           </ul>
 
           <p>That last one is huge. In Python, you're constantly stitching together LLM calls and DB writes with hand-rolled retry logic. In Spring, it's one <code>@Transactional</code> annotation.</p>
 
           <h2>Meet LangChain4j</h2>
-          <p><strong>LangChain4j</strong> is the Java port of LangChain. Same concepts — chains, memory, retrievers, tools — but with Java's type system and Spring integration.</p>
+          <p><strong>LangChain4j</strong> is the Java port of LangChain. Same concepts, chains, memory, retrievers, tools, but with Java's type system and Spring integration.</p>
 
           <pre><code>@Service
 public class PropertySearchService {
@@ -137,7 +155,7 @@ public class PropertySearchService {
           <h2>Production Concerns</h2>
 
           <h3>1. Circuit Breakers</h3>
-          <p>Wrap every LLM call in Resilience4j. OpenAI's API will have a bad day — your system shouldn't cascade when that happens.</p>
+          <p>Wrap every LLM call in Resilience4j. OpenAI's API will have a bad day, your system shouldn't cascade when that happens.</p>
 
           <h3>2. Token Budgets</h3>
           <p>I expose token usage as Micrometer metrics and alert when a user crosses their budget. Grafana dashboards show cost per endpoint per hour.</p>
@@ -155,7 +173,7 @@ public class PropertySearchService {
 
           <blockquote>Your Spring Boot skills aren't obsolete in the AI era. They're exactly what production LLM systems need: reliability, observability, type safety, and transactional integrity.</blockquote>
 
-          <p>If you're a Java engineer looking at the AI wave and feeling left behind — don't. Pick up LangChain4j, spend a weekend building a RAG service, and you'll realize your existing skills are more relevant than ever.</p>
+          <p>If you're a Java engineer looking at the AI wave and feeling left behind, don't. Pick up LangChain4j, spend a weekend building a RAG service, and you'll realize your existing skills are more relevant than ever.</p>
         </div>
       </div>
     </section>

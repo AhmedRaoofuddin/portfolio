@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The n8n Automation Playbook: 10+ Workflows in Production | Ahmed Raoofuddin</title>
+  <meta name="description" content="Real-world patterns for building reliable n8n automation suites. WhatsApp OTP, Google Drive to vector DB ingestion, content QA, scheduled health checks, and more.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
+    <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-menu-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications" onclick="closeMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active" onclick="closeMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact" onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <section class="section active">
+      <div class="blog-post-wrap">
+        <a href="../index.html#blog" class="blog-post-back"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+
+        <div class="blog-post-header">
+          <span class="blog-post-category">Automation</span>
+          <h1 class="blog-post-title">The n8n Automation Playbook: 10+ Workflows in Production</h1>
+          <div class="blog-post-meta">
+            <span><i class="fa-regular fa-calendar"></i> December 5, 2025</span>
+            <span><i class="fa-regular fa-clock"></i> 11 min read</span>
+            <span><i class="fa-regular fa-user"></i> Ahmed Raoofuddin</span>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=600&fit=crop" alt="n8n Automation" class="blog-post-hero">
+
+        <div class="blog-post-content">
+          <p>I used to be a snob about low-code automation. "Real engineers write code," I told myself, and spent weeks building custom microservices for jobs that could have been done in n8n in an afternoon.</p>
+
+          <p>Then I joined Offplan, inherited a mess of cron jobs and Python scripts, and rebuilt the whole thing in n8n. Six months later, I had 10+ production workflows running reliably, and I was a convert. Here is the playbook.</p>
+
+          <h2>Why n8n Won Me Over</h2>
+
+          <p>Three things flipped my opinion:</p>
+
+          <ol>
+            <li><strong>Visual flow debugging</strong>: you can see exactly where data got stuck. No more tailing logs and guessing.</li>
+            <li><strong>Built-in credentials vault</strong>: every team member can use API keys without ever seeing them in plaintext.</li>
+            <li><strong>Code nodes when you need them</strong>: n8n is not a no-code trap. Any node can drop to a JavaScript or Python function when the visual stuff runs out of rope.</li>
+          </ol>
+
+          <p>That third one is the key. n8n is not "drag and drop instead of coding." It is "drag and drop until the abstraction breaks, then code."</p>
+
+          <h2>Workflow 1: WhatsApp OTP Sessioning</h2>
+
+          <p>Problem: users needed to verify their phone numbers during property inquiry without downloading an app. Solution: a Twilio WhatsApp webhook hooked into n8n that generates a 6-digit code, stores it in Redis with a 5-minute TTL, and verifies on submission.</p>
+
+          <p>The clever part was the session state machine. Users sometimes take 4 minutes to come back. The workflow uses a wait node with a webhook trigger that fires when the user submits the code, with a fallback timeout path.</p>
+
+          <h2>Workflow 2: Google Drive to Vector DB Ingestion</h2>
+
+          <p>Problem: the marketing team drops new property documents into a Google Drive folder. The RAG system needs them indexed within 10 minutes.</p>
+
+          <p>Workflow:</p>
+
+          <pre><code>Trigger: Google Drive (new file in folder)
+  -&gt; Download file
+  -&gt; Extract text (PDF, DOCX, images via OCR)
+  -&gt; Chunk into 800-token passages
+  -&gt; Embed via OpenAI embeddings API
+  -&gt; Upsert to Weaviate
+  -&gt; Slack notification: "Indexed N new docs"</code></pre>
+
+          <p>Added retries on each step with exponential backoff. Added a deduplication check using content hash so the same doc does not get re-indexed if someone renames it.</p>
+
+          <h2>Workflow 3: Multi-Channel MCP Style Orchestration</h2>
+
+          <p>For Metamorphic, I built an orchestration workflow that routes incoming requests across WhatsApp, email, the website chat, and Instagram DMs into a single unified intake queue. Each channel has its own adapter, but they all feed the same downstream processing:</p>
+
+          <ul>
+            <li>Intent classification via Claude</li>
+            <li>Lead scoring based on historical conversion data</li>
+            <li>Auto-routing to the right team member in Pipedrive</li>
+            <li>Fallback to human review for edge cases</li>
+          </ul>
+
+          <h2>Workflow 4: AI Tutor Content Flow</h2>
+
+          <p>This one was fun. Users can ask a property question in natural language. The workflow:</p>
+
+          <ol>
+            <li>Captures the question via webhook</li>
+            <li>Runs it through a retrieval step against the knowledge base</li>
+            <li>Generates an answer with citations</li>
+            <li>Passes the answer through a second LLM for fact-checking against the retrieved sources</li>
+            <li>If fact-check fails, escalates to a human reviewer on Slack</li>
+            <li>Logs everything to Supabase for the eval harness</li>
+          </ol>
+
+          <h2>Workflow 5: Content QA and Refresh</h2>
+
+          <p>Our 300k+ SEO pages need periodic refreshes as listings change. A scheduled workflow runs every 6 hours:</p>
+
+          <ul>
+            <li>Fetches listings updated in the last 6 hours from the DB</li>
+            <li>Re-generates the relevant page content via an LLM call</li>
+            <li>Pushes updates to Botble CMS</li>
+            <li>Notifies search engines via IndexNow</li>
+            <li>Updates the sitemap</li>
+          </ul>
+
+          <h2>Workflow 6: Scheduled Health Checks</h2>
+
+          <p>Every 5 minutes, a workflow pings all critical endpoints, checks TLS certificates, verifies CDN cache hit rates, and runs a synthetic RAG query. If anything fails the health criteria, it pages me via Telegram and Slack simultaneously.</p>
+
+          <h2>Workflow 7 to 10: The Support Cast</h2>
+
+          <ul>
+            <li><strong>Daily analytics digest</strong>: pulls metrics from GA4, Mixpanel, and our DB, posts a formatted summary to Slack at 9am</li>
+            <li><strong>Lead enrichment</strong>: when a new lead hits Pipedrive, fetches LinkedIn info, company data, and enriches the deal record</li>
+            <li><strong>Invoice automation</strong>: generates, sends, and tracks invoices through the full accounts receivable cycle</li>
+            <li><strong>Competitor monitoring</strong>: scrapes selected competitor sites weekly, diffs the content, flags significant changes</li>
+          </ul>
+
+          <h2>The Patterns That Matter</h2>
+
+          <h3>1. Idempotency Keys Everywhere</h3>
+          <p>Every external API call carries an idempotency key. Retries are safe. Failed workflows can be replayed without creating duplicates.</p>
+
+          <h3>2. Webhook Signatures</h3>
+          <p>Incoming webhooks from Twilio, Stripe, Pipedrive all get HMAC signature verified before doing any work. This is non-negotiable in production.</p>
+
+          <h3>3. Audit Trails</h3>
+          <p>Every workflow logs its inputs and outputs to a central Postgres audit table. When something goes wrong at 3am, I can replay the exact sequence of events.</p>
+
+          <h3>4. Human In The Loop</h3>
+          <p>High-intent events (big leads, possible fraud, edge cases in AI classification) get routed to Slack with approve or reject buttons. The workflow pauses until someone clicks.</p>
+
+          <h3>5. Back Pressure</h3>
+          <p>Rate-limited APIs (OpenAI, Twilio) are wrapped in a queue node with a token bucket. The workflow slows down gracefully instead of hitting 429 errors.</p>
+
+          <h3>6. Secrets Management</h3>
+          <p>n8n's built-in credentials system is good, but I go further: all production credentials live in AWS Secrets Manager and get rotated monthly. n8n reads them via a custom credential type.</p>
+
+          <h3>7. Environment Separation</h3>
+          <p>Dev, staging, and production are three separate n8n instances. Workflows are exported as JSON and moved via a CI pipeline, not clicked through the UI.</p>
+
+          <h2>What I Would Do Differently</h2>
+
+          <p>If I were starting from scratch today, I would:</p>
+
+          <ul>
+            <li>Use n8n's code nodes for orchestration only, not heavy computation. Push heavy work to dedicated microservices.</li>
+            <li>Start with version control for workflow JSON from day one. Retrofitting it later is a pain.</li>
+            <li>Build a shared "common steps" library earlier. I kept rewriting the same retry logic in 10 different workflows.</li>
+            <li>Use sub-workflows aggressively for any logic that appears in more than one place.</li>
+          </ul>
+
+          <blockquote>n8n is not a toy. For glue work, webhook handling, scheduled jobs, and API orchestration, it is the most productive tool I have ever used. Stop reinventing these wheels in Python.</blockquote>
+
+          <p>If you want to see any of these workflows in more detail, ping me. I am considering open-sourcing a cleaned-up template set.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('active');
+    document.getElementById('mobileMenuOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.getElementById('mobileMenuOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
+</script>
+</body>
+</html>

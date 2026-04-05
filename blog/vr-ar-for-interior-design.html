@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a VR and AR Pipeline for Interior Design Clients | Ahmed Raoofuddin</title>
+  <meta name="description" content="Inside the production 8K rendering and Aria Gen 2 AR glass pipeline I built at Metamorphic Design for on-site client measurements and immersive walkthroughs.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
+    <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-menu-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications" onclick="closeMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active" onclick="closeMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact" onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <section class="section active">
+      <div class="blog-post-wrap">
+        <a href="../index.html#blog" class="blog-post-back"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+
+        <div class="blog-post-header">
+          <span class="blog-post-category">VR / AR</span>
+          <h1 class="blog-post-title">Building a VR and AR Pipeline for Interior Design Clients</h1>
+          <div class="blog-post-meta">
+            <span><i class="fa-regular fa-calendar"></i> December 18, 2025</span>
+            <span><i class="fa-regular fa-clock"></i> 10 min read</span>
+            <span><i class="fa-regular fa-user"></i> Ahmed Raoofuddin</span>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=1200&h=600&fit=crop" alt="VR AR Pipeline" class="blog-post-hero">
+
+        <div class="blog-post-content">
+          <p>When I joined Metamorphic Design Company, one of my first briefs was brutal in its simplicity: clients need to see their space before we build it, and they need to see it convincingly. Not a flat PDF. Not a cartoonish render. Something that makes them feel they are already standing in the finished interior.</p>
+
+          <p>What I ended up shipping was a full production pipeline combining 8K photoreal renders, VR walkthroughs, and on-site AR measurement using the Aria Gen 2 glasses. Here is how it came together.</p>
+
+          <h2>The Three Problems We Had To Solve</h2>
+
+          <ol>
+            <li><strong>Production-grade renders</strong>: standard architectural visualization tools produce 1080p or 4K output. For premium villas in Dubai, that is not enough. Clients zoom in on details.</li>
+            <li><strong>Real-time immersion</strong>: a static render is a picture. Clients want to walk around, look up at the ceiling, open doors, change finishes in the moment.</li>
+            <li><strong>On-site precision</strong>: before the render matters, our site supervisors need to capture exact measurements from the physical space, and they need to do it without dragging a laser measure around for three hours.</li>
+          </ol>
+
+          <h2>Part 1: The 8K Render Pipeline</h2>
+
+          <p>We standardized on an Unreal Engine 5 based workflow with Lumen global illumination and Nanite virtualized geometry. Textures come from a proprietary material library we built over six months of scans. Everything feeds into a Python orchestration layer that handles:</p>
+
+          <ul>
+            <li>Asset ingestion from the design team's shared drive</li>
+            <li>Scene assembly based on Pipedrive project metadata</li>
+            <li>Distributed render farm submission (custom scheduler on top of Kubernetes)</li>
+            <li>Automatic LoD generation for the VR viewer</li>
+            <li>Delivery to the client portal with versioning</li>
+          </ul>
+
+          <p>The hard part was the render farm. Each 8K frame takes 40 to 90 seconds on a single RTX 4090. A villa walkthrough has thousands of frames. We run 24 GPU nodes in parallel, with a priority queue so premium clients jump the line.</p>
+
+          <h2>Part 2: The VR Viewer</h2>
+
+          <p>The render farm produces beautiful stills, but stills are not experiences. For walkthroughs, we built a lightweight Three.js based viewer that streams mesh LoDs and lightmaps based on headset pose.</p>
+
+          <p>Key choices:</p>
+
+          <ul>
+            <li><strong>Three.js over Unity for the viewer</strong>: no install required, runs in a browser, works on Quest and Vision Pro out of the box</li>
+            <li><strong>glTF 2.0 with Draco compression</strong>: single industry standard, good tool chain</li>
+            <li><strong>PBR materials with ACES tone mapping</strong>: the renders look cinematic without extra post-processing</li>
+            <li><strong>Hot-swap finish variations</strong>: clients can toggle between three flooring options in real time without a reload</li>
+          </ul>
+
+          <p>The first version choked on villa-scale scenes. We hit 3 frames per second on a Quest 3 with the full mesh loaded. The fix was aggressive LoD switching plus occlusion culling. Now we run at a steady 72 fps even on the largest scenes.</p>
+
+          <h2>Part 3: Aria Gen 2 AR Glass for On-Site Work</h2>
+
+          <p>This is the part I am proudest of. Meta's Aria Gen 2 research glasses combine depth sensors, SLAM, and passthrough AR in a form factor that site supervisors can actually wear for an hour at a time. We integrated them into our workflow for three specific jobs:</p>
+
+          <h3>1. Measurement Capture</h3>
+          <p>Our site supervisor walks into an empty villa, points at corners, and the glasses capture exact distances, floor plans, and ceiling heights. The data flows straight into our BOQ (Bill of Quantities) system. A three hour manual measurement job now takes 20 minutes.</p>
+
+          <h3>2. Cost Estimate Overlay</h3>
+          <p>Procurement walks through the same space wearing the glasses and sees an AR overlay of running material costs per room. "This marble is 280 AED per square meter, total for this floor is 48,000 AED." Decisions get made on site instead of in follow-up meetings a week later.</p>
+
+          <h3>3. Client Design Review</h3>
+          <p>The killer use case. The client stands in the half-built villa and sees the final design overlaid on the real walls through the glasses. They see the couch, the lighting, the artwork, exactly where it will go. This has closed deals that would have stalled for weeks.</p>
+
+          <h2>The Tech Stack</h2>
+          <pre><code>Content Pipeline:
+  Unreal Engine 5 + Lumen + Nanite
+  Python orchestrator (FastAPI)
+  Custom Kubernetes render farm (24 GPUs)
+  pgvector for asset similarity search
+
+VR Viewer:
+  Three.js with WebXR
+  glTF 2.0 with Draco
+  Custom LoD streaming
+  PBR + ACES tone mapping
+
+AR Integration:
+  Aria Gen 2 SDK
+  SLAM and depth integration
+  WebRTC for live client viewing
+  Direct integration with MetaForge ERP</code></pre>
+
+          <h2>What I Learned</h2>
+
+          <p><strong>Fidelity is a product metric.</strong> Clients paying for a 15 million AED villa can tell the difference between 4K and 8K. Skipping that last step to save render time is false economy.</p>
+
+          <p><strong>The viewer is more important than the render.</strong> A perfect render in a clunky viewer feels worse than a slightly lower quality render in a smooth viewer. Interaction latency is everything.</p>
+
+          <p><strong>AR beats VR for on-site work.</strong> VR is great when you are sitting in an office. On a construction site, you need to see the real world plus overlays, not a fully synthetic environment.</p>
+
+          <blockquote>The best visualization pipeline is invisible. The client never asks about the tech. They just see their home.</blockquote>
+
+          <p>Building this pipeline was the most cross-disciplinary project of my career so far. It touched computer graphics, distributed systems, ML, SLAM, and product design. If you are working at the intersection of AI and 3D, the next five years are going to be wild.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('active');
+    document.getElementById('mobileMenuOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.getElementById('mobileMenuOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
+</script>
+</body>
+</html>

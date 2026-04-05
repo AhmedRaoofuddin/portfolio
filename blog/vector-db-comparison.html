@@ -37,16 +37,34 @@
 
   <header class="mobile-header">
     <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
-    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+    <button class="mobile-menu-btn" onclick="openMobileMenu()" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
   </header>
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-xmark"></i></button>
-    <ul>
-      <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
-      <li><a href="../index.html#blog"><i class="fa-solid fa-book-open"></i>Blog</a></li>
-      <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
-    </ul>
-  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-menu-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html#home" onclick="closeMobileMenu()"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about" onclick="closeMobileMenu()"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume" onclick="closeMobileMenu()"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications" onclick="closeMobileMenu()"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education" onclick="closeMobileMenu()"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active" onclick="closeMobileMenu()"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact" onclick="closeMobileMenu()"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
 
   <main class="main-content">
     <section class="section active">
@@ -79,7 +97,7 @@
             <li><strong>Hardware</strong>: AWS c6i.4xlarge (self-hosted) or equivalent managed tier</li>
           </ul>
 
-          <h2>FAISS — The Speed King</h2>
+          <h2>FAISS, The Speed King</h2>
           <p><strong>Latency (p95):</strong> 8ms<br>
           <strong>Recall@10:</strong> 0.94<br>
           <strong>Cost:</strong> Server costs only (~$250/mo)<br>
@@ -89,7 +107,7 @@
 
           <p><strong>Use when</strong>: you have a single-process workload, embeddings are relatively static, and you care about absolute speed more than features.</p>
 
-          <h2>Pinecone — The Managed Option</h2>
+          <h2>Pinecone, The Managed Option</h2>
           <p><strong>Latency (p95):</strong> 45ms<br>
           <strong>Recall@10:</strong> 0.96<br>
           <strong>Cost:</strong> $2,100/mo at this scale (s1.x1)<br>
@@ -101,7 +119,7 @@
 
           <p><strong>Use when</strong>: you're a small team, you don't want to run infrastructure, and your dataset is under 10M vectors.</p>
 
-          <h2>Weaviate — The Feature-Rich Middle Ground</h2>
+          <h2>Weaviate, The Feature-Rich Middle Ground</h2>
           <p><strong>Latency (p95):</strong> 22ms<br>
           <strong>Recall@10:</strong> 0.95<br>
           <strong>Cost:</strong> $600/mo self-hosted, $1,400/mo Weaviate Cloud<br>
@@ -109,11 +127,11 @@
 
           <p>Weaviate is my current favorite. It has built-in <strong>hybrid search</strong> (BM25 + dense), a proper GraphQL/REST API, multi-tenancy, and first-class support for multi-modal embeddings. It runs in Kubernetes like any other service.</p>
 
-          <p>The thing that pushed me to Weaviate was the modules system — built-in rerankers, cross-encoders, generative modules. I stopped gluing tools together and let Weaviate handle the pipeline.</p>
+          <p>The thing that pushed me to Weaviate was the modules system, built-in rerankers, cross-encoders, generative modules. I stopped gluing tools together and let Weaviate handle the pipeline.</p>
 
           <p><strong>Use when</strong>: you need hybrid search, you're comfortable running infrastructure, and you want features that Pinecone doesn't have.</p>
 
-          <h2>ChromaDB — The Prototyper's Best Friend</h2>
+          <h2>ChromaDB, The Prototyper's Best Friend</h2>
           <p><strong>Latency (p95):</strong> 55ms<br>
           <strong>Recall@10:</strong> 0.93<br>
           <strong>Cost:</strong> Free / server costs (~$150/mo)<br>
@@ -143,13 +161,13 @@ ChromaDB          55ms   0.93     $150    ⭐⭐⭐</code></pre>
 
           <h2>What I'm Watching in 2026</h2>
           <ul>
-            <li><strong>LanceDB</strong> — disk-based, multi-modal, impressive benchmarks</li>
-            <li><strong>Qdrant</strong> — Rust performance, payload filtering is best-in-class</li>
-            <li><strong>pgvector + PostgreSQL</strong> — if you already run Postgres, this might be all you need</li>
-            <li><strong>Turbopuffer</strong> — object-storage-backed, interesting cost model</li>
+            <li><strong>LanceDB</strong>, disk-based, multi-modal, impressive benchmarks</li>
+            <li><strong>Qdrant</strong>, Rust performance, payload filtering is best-in-class</li>
+            <li><strong>pgvector + PostgreSQL</strong>, if you already run Postgres, this might be all you need</li>
+            <li><strong>Turbopuffer</strong>, object-storage-backed, interesting cost model</li>
           </ul>
 
-          <p>The space is still moving. Bookmark this post and check back in six months — the numbers will have shifted.</p>
+          <p>The space is still moving. Bookmark this post and check back in six months, the numbers will have shifted.</p>
         </div>
       </div>
     </section>
