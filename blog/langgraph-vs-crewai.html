@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LangGraph vs CrewAI: Which Framework Wins in 2026? | Ahmed Raoofuddin</title>
+  <meta name="description" content="A hands-on comparison of the two leading agent frameworks based on real production deployments at Metamorphic.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-xmark"></i></button>
+    <ul>
+      <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+      <li><a href="../index.html#blog"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+      <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+    </ul>
+  </div>
+
+  <main class="main-content">
+    <section class="section active">
+      <div class="blog-post-wrap">
+        <a href="../index.html#blog" class="blog-post-back"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+
+        <div class="blog-post-header">
+          <span class="blog-post-category">Frameworks</span>
+          <h1 class="blog-post-title">LangGraph vs CrewAI: Which Framework Wins in 2026?</h1>
+          <div class="blog-post-meta">
+            <span><i class="fa-regular fa-calendar"></i> February 20, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 9 min read</span>
+            <span><i class="fa-regular fa-user"></i> Ahmed Raoofuddin</span>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&h=600&fit=crop" alt="LangGraph vs CrewAI" class="blog-post-hero">
+
+        <div class="blog-post-content">
+          <p>At Metamorphic, I've shipped production agent systems in both <strong>LangGraph</strong> and <strong>CrewAI</strong>. Same team, same infrastructure, same LLM. Different frameworks, different outcomes.</p>
+
+          <p>Spoiler: the answer isn't "one is better." The answer is "they solve different problems." Here's how to pick.</p>
+
+          <h2>The Short Version</h2>
+          <ul>
+            <li><strong>CrewAI</strong>: role-based, conversational, fast to prototype. Agents have personas like "Researcher" and "Writer" who talk to each other.</li>
+            <li><strong>LangGraph</strong>: graph-based, deterministic, production-grade. You draw a state machine and agents move through nodes.</li>
+          </ul>
+
+          <h2>CrewAI: The Good Parts</h2>
+          <p>CrewAI's killer feature is how fast you can go from idea to working prototype. I built a content research crew in 45 minutes on a Friday and demoed it Monday:</p>
+
+          <pre><code>researcher = Agent(
+    role="Senior Research Analyst",
+    goal="Find the most recent trends in AI",
+    backstory="You are a veteran analyst..."
+)
+
+writer = Agent(
+    role="Content Writer",
+    goal="Turn research into blog posts",
+    backstory="You have 10 years of tech writing experience..."
+)
+
+crew = Crew(agents=[researcher, writer], process=Process.sequential)
+result = crew.kickoff()</code></pre>
+
+          <p>That's it. No graph definition, no state management. For proof-of-concepts and content pipelines, CrewAI is unbeatable.</p>
+
+          <h2>CrewAI: Where It Breaks</h2>
+          <p>The moment you need <strong>deterministic behavior</strong>, CrewAI starts fighting you. Agent conversations are free-form, which means they're unpredictable. That's fine for "write me a blog post." It's catastrophic for "process this purchase order."</p>
+
+          <p>I hit these walls hard:</p>
+          <ul>
+            <li>No way to enforce "always call tool X before tool Y"</li>
+            <li>No durable state — if a step fails halfway, you restart from scratch</li>
+            <li>Testing is painful because the same input produces different agent chatter each run</li>
+            <li>Debugging requires reading hundreds of lines of role-play dialogue</li>
+          </ul>
+
+          <h2>LangGraph: The Good Parts</h2>
+          <p>LangGraph flips the model. Instead of agents talking, you define a <strong>graph of nodes</strong>, each with explicit inputs, outputs, and transitions. It's basically a state machine where nodes happen to call LLMs.</p>
+
+          <pre><code>graph = StateGraph(AgentState)
+
+graph.add_node("classify", classify_intent)
+graph.add_node("search", retrieve_docs)
+graph.add_node("generate", generate_answer)
+graph.add_node("verify", fact_check)
+
+graph.add_conditional_edges(
+    "verify",
+    lambda s: "done" if s["verified"] else "search",
+)
+
+graph.set_entry_point("classify")
+app = graph.compile(checkpointer=PostgresCheckpointer())</code></pre>
+
+          <p>Durable state, explicit transitions, time-travel debugging via checkpoints, human-in-the-loop interrupts. <strong>Everything you need for production.</strong></p>
+
+          <h2>LangGraph: Where It Hurts</h2>
+          <p>LangGraph's learning curve is real. You're not writing prompts — you're designing state machines. For a team that's new to agent systems, this feels like overkill until it doesn't.</p>
+
+          <p>The first week of my LangGraph project at Metamorphic, I kept thinking "this would be one line in CrewAI." By week three, I was grateful for every ounce of explicitness.</p>
+
+          <h2>When to Use Which</h2>
+
+          <h3>Use CrewAI when:</h3>
+          <ul>
+            <li>You're prototyping and need velocity</li>
+            <li>The task is creative (writing, research, brainstorming)</li>
+            <li>Determinism doesn't matter</li>
+            <li>Your audience tolerates "close enough"</li>
+          </ul>
+
+          <h3>Use LangGraph when:</h3>
+          <ul>
+            <li>You're shipping to real users</li>
+            <li>You need reproducibility and debugging</li>
+            <li>The workflow has branching logic and error recovery</li>
+            <li>Human-in-the-loop is required</li>
+            <li>State needs to survive process restarts</li>
+          </ul>
+
+          <h2>My Current Production Stack</h2>
+          <p>For Cortivex and Metamorphic's automation suite, I use <strong>LangGraph</strong>. For internal content generation and research tools, I use <strong>CrewAI</strong>. Both in the same repo, each doing what it's best at.</p>
+
+          <blockquote>The best framework is the one that matches the job. Stop looking for a winner and start picking the right tool.</blockquote>
+
+          <h2>Honorable Mentions</h2>
+          <p>Also watching closely in 2026: <strong>AutoGen</strong> (Microsoft's multi-agent framework, great for conversational agents), <strong>PydanticAI</strong> (type-safe, minimal, excellent DX), and <strong>Llama Stack</strong> (Meta's end-to-end agent runtime). The space is moving fast.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

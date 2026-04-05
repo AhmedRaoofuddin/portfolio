@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Naive RAG to Agentic RAG: Production Lessons | Ahmed Raoofuddin</title>
+  <meta name="description" content="How I moved 300k+ real estate pages from simple vector search to agentic retrieval with eval harnesses, rerank, and hybrid search.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-xmark"></i></button>
+    <ul>
+      <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+      <li><a href="../index.html#blog"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+      <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+    </ul>
+  </div>
+
+  <main class="main-content">
+    <section class="section active">
+      <div class="blog-post-wrap">
+        <a href="../index.html#blog" class="blog-post-back"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+
+        <div class="blog-post-header">
+          <span class="blog-post-category">RAG</span>
+          <h1 class="blog-post-title">From Naive RAG to Agentic RAG: Production Lessons</h1>
+          <div class="blog-post-meta">
+            <span><i class="fa-regular fa-calendar"></i> March 18, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 10 min read</span>
+            <span><i class="fa-regular fa-user"></i> Ahmed Raoofuddin</span>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1526378800651-c32d170fe6f8?w=1200&h=600&fit=crop" alt="Agentic RAG" class="blog-post-hero">
+
+        <div class="blog-post-content">
+          <p>At OffplanProperties.ai, I shipped a RAG system that indexed <strong>300,000+ long-form real estate pages</strong>. The v1 was naive RAG: embed, top-k, stuff into context, generate. It worked in demos and failed in production.</p>
+
+          <p>Over six months, I rebuilt it as <strong>Agentic RAG</strong>, and the numbers speak for themselves: retrieval precision from 0.62 to 0.91, hallucination rate from 11% to under 2%, p95 latency still under 800ms.</p>
+
+          <h2>Why Naive RAG Fails in Production</h2>
+          <p>Naive RAG has three silent killers:</p>
+
+          <ul>
+            <li><strong>Embedding drift</strong> — user queries and document chunks live in different vocabularies ("2-bed apartment near metro" vs. legal descriptions full of "ensuite" and "RERA")</li>
+            <li><strong>Chunking blindness</strong> — important context gets split across chunks and never retrieved together</li>
+            <li><strong>No recovery</strong> — when retrieval fails, the LLM hallucinates confidently instead of asking for clarification</li>
+          </ul>
+
+          <h2>Step 1: Hybrid Search (BM25 + Vector)</h2>
+          <p>My first upgrade was combining BM25 keyword search with dense vector search using <strong>reciprocal rank fusion</strong>. This alone moved precision from 0.62 to 0.74.</p>
+
+          <pre><code>// RRF fusion
+for doc in (bm25_results | vector_results):
+    score[doc] += 1 / (60 + rank[doc])</code></pre>
+
+          <h2>Step 2: Cross-Encoder Rerank</h2>
+          <p>After hybrid search gives you the top-50, rerank with a cross-encoder. Cross-encoders are slow at scale but precise — and you're only running them on 50 candidates.</p>
+
+          <p>I used <code>BAAI/bge-reranker-large</code>. Added 120ms to p95 but moved precision from 0.74 to 0.85.</p>
+
+          <h2>Step 3: Query Transformation</h2>
+          <p>Here's where it gets agentic. Before retrieval, a small LLM rewrites the user's query:</p>
+          <ul>
+            <li><strong>Expansion</strong>: "cheap 2BR Marina" → "affordable two-bedroom apartments in Dubai Marina under AED 1.5M with sea view"</li>
+            <li><strong>Decomposition</strong>: "which new projects have pools and gyms near metro" → 3 sub-queries</li>
+            <li><strong>HyDE</strong>: hypothetical document generation to bridge the query/document vocabulary gap</li>
+          </ul>
+
+          <h2>Step 4: The Agentic Loop</h2>
+          <p>The retrieval engine itself became an agent. Given a query, it:</p>
+          <ol>
+            <li>Decides whether to search, reformulate, or answer directly</li>
+            <li>Runs retrieval, scores confidence</li>
+            <li>If confidence is low, reformulates and retries (max 3 hops)</li>
+            <li>If still low, asks the user a clarifying question instead of hallucinating</li>
+          </ol>
+
+          <p>This is what people mean by "Agentic RAG." It's not a buzzword — it's the difference between a system that confidently wrong and one that knows when to stop.</p>
+
+          <h2>Step 5: Evaluation Harness (RAGAS + LangSmith)</h2>
+          <p>None of this matters if you can't measure it. I built an eval harness with <strong>RAGAS</strong> for retrieval metrics (context precision, recall, faithfulness) and <strong>LangSmith</strong> for end-to-end traces with human feedback.</p>
+
+          <p>Every PR runs 200 golden questions. If faithfulness drops below 0.9 or latency exceeds 1s, the build fails. Saved me from shipping three silent regressions in the first month.</p>
+
+          <h2>Takeaways</h2>
+          <blockquote>Naive RAG is a demo. Agentic RAG is production. The gap between them is measurement.</blockquote>
+
+          <p>If you're building RAG in 2026, start with hybrid search + rerank + eval harness on day one. Don't ship without them.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

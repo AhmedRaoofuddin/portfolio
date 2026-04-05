@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLMOps in Production: MLflow, Langfuse, RAGAS | Ahmed Raoofuddin</title>
+  <meta name="description" content="A practical guide to evaluation harnesses, prompt versioning, cost tracking, and regression testing for LLM-powered products.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-xmark"></i></button>
+    <ul>
+      <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+      <li><a href="../index.html#blog"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+      <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+    </ul>
+  </div>
+
+  <main class="main-content">
+    <section class="section active">
+      <div class="blog-post-wrap">
+        <a href="../index.html#blog" class="blog-post-back"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+
+        <div class="blog-post-header">
+          <span class="blog-post-category">LLMOps</span>
+          <h1 class="blog-post-title">LLMOps in Production: MLflow, Langfuse, RAGAS</h1>
+          <div class="blog-post-meta">
+            <span><i class="fa-regular fa-calendar"></i> March 5, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 12 min read</span>
+            <span><i class="fa-regular fa-user"></i> Ahmed Raoofuddin</span>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop" alt="LLMOps" class="blog-post-hero">
+
+        <div class="blog-post-content">
+          <p>"Ship it and hope" works for a hackathon prototype. It does not work when your LLM powers a property search touching 1.5k requests per minute, with real money and real legal liability on the line.</p>
+
+          <p>Here's the LLMOps stack I run in production, and why each piece earns its keep.</p>
+
+          <h2>The Four Pillars of LLMOps</h2>
+          <ol>
+            <li><strong>Observability</strong> — traces, spans, tokens, costs</li>
+            <li><strong>Evaluation</strong> — automated quality gates on every change</li>
+            <li><strong>Versioning</strong> — prompts, models, and datasets treated like code</li>
+            <li><strong>Feedback loops</strong> — production signals flow back into evaluation</li>
+          </ol>
+
+          <h2>Observability: Langfuse + LangSmith</h2>
+          <p>Every LLM call in my stack is traced. Langfuse captures the prompt, completion, latency, token counts, cost, user ID, and session. LangSmith adds the LangChain/LangGraph graph view so I can see which node in a chain is bleeding tokens.</p>
+
+          <p>Why both? Langfuse is open-source and I self-host it for PII reasons. LangSmith is sharper for debugging agent loops. They complement each other.</p>
+
+          <h2>Evaluation: RAGAS + Golden Sets</h2>
+          <p>RAGAS gives you the four metrics that matter for RAG systems:</p>
+          <ul>
+            <li><strong>Context Precision</strong> — did we retrieve the right chunks?</li>
+            <li><strong>Context Recall</strong> — did we miss relevant info?</li>
+            <li><strong>Faithfulness</strong> — does the answer stay grounded in the context?</li>
+            <li><strong>Answer Relevancy</strong> — does the answer actually address the question?</li>
+          </ul>
+
+          <p>I maintain a golden set of 200 hand-labeled examples. Every pull request runs the full eval. If faithfulness drops below 0.9, the build fails. No exceptions.</p>
+
+          <pre><code>from ragas import evaluate
+from ragas.metrics import faithfulness, answer_relevancy, context_precision
+
+result = evaluate(
+    dataset=golden_set,
+    metrics=[faithfulness, answer_relevancy, context_precision]
+)
+
+assert result['faithfulness'] > 0.9, "Faithfulness regression!"</code></pre>
+
+          <h2>Versioning: MLflow for Prompts + Models</h2>
+          <p>Prompts are code. I version every prompt in MLflow alongside the model version, the eval results, and the dataset hash. When something breaks in production, I can roll back to a known-good combination in one command.</p>
+
+          <p>This sounds boring. It isn't. The first time you need to roll back a prompt at 2am because a model update broke your few-shot examples, you'll understand why it matters.</p>
+
+          <h2>Feedback Loops: Production → Eval Set</h2>
+          <p>The best eval set is your production traffic. I sample 0.5% of production requests, anonymize them, and feed them into a human review queue. Anything flagged as wrong becomes a new golden set entry.</p>
+
+          <p>This is how you avoid the "demos beautifully, fails in production" trap. Your eval set becomes a living reflection of what users actually ask.</p>
+
+          <h2>Cost Tracking</h2>
+          <p>Token costs compound fast. At 1.5k req/min with a 2k-token context, you're burning roughly $3k/day on GPT-5 alone. I track per-endpoint, per-user, and per-feature cost in Langfuse, and page myself when daily cost drifts 20% above baseline.</p>
+
+          <p>Cost is a product metric, not just a finance metric.</p>
+
+          <h2>Putting It Together: CI/CD for LLMs</h2>
+          <pre><code># On every PR:
+1. Run unit tests + linters
+2. Run RAGAS eval on golden set
+3. Compare to baseline (main branch)
+4. Fail if faithfulness/precision regresses
+5. Human review required for prompt changes
+
+# On merge to main:
+1. Deploy to staging
+2. Run 10% canary for 1 hour
+3. Compare Langfuse metrics
+4. Promote to prod or auto-rollback</code></pre>
+
+          <h2>The Mindset Shift</h2>
+          <blockquote>Treat LLMs like any other production service. They need observability, tests, versioning, and rollback. The tools are here — use them.</blockquote>
+
+          <p>LLMOps isn't optional anymore. If you're not doing it, you're shipping bugs to users and hoping they don't notice.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

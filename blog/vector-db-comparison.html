@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAISS vs Pinecone vs Weaviate vs ChromaDB: A Real Benchmark | Ahmed Raoofuddin</title>
+  <meta name="description" content="I ran the same 1M-document RAG workload across all four vector databases. Here's what I found on latency, recall, cost, and operability.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img src="../assets/img/ahmed-profile.jpg" alt="Ahmed Raoofuddin">
+      <h3>AHMED RAOOFUDDIN</h3>
+      <p>AI Engineer</p>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="../index.html#about"><i class="fa-solid fa-user"></i>About Me</a></li>
+        <li><a href="../index.html#resume"><i class="fa-solid fa-file-lines"></i>Resume</a></li>
+        <li><a href="../index.html#portfolio"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+        <li><a href="../index.html#certifications"><i class="fa-solid fa-certificate"></i>Certifications</a></li>
+        <li><a href="../index.html#education"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+        <li><a href="../index.html#blog" class="active"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+        <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-social">
+      <a href="https://linkedin.com/in/ahmed-raoofuddin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/AhmedRaoofuddin" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:eng.ahmedraoofuddin@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <div class="logo"><img src="../assets/img/ahmed-profile.jpg" alt="Ahmed"><span>Ahmed R.</span></div>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><i class="fa-solid fa-xmark"></i></button>
+    <ul>
+      <li><a href="../index.html#home"><i class="fa-solid fa-house"></i>Home</a></li>
+      <li><a href="../index.html#blog"><i class="fa-solid fa-book-open"></i>Blog</a></li>
+      <li><a href="../index.html#contact"><i class="fa-solid fa-paper-plane"></i>Contact Me</a></li>
+    </ul>
+  </div>
+
+  <main class="main-content">
+    <section class="section active">
+      <div class="blog-post-wrap">
+        <a href="../index.html#blog" class="blog-post-back"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+
+        <div class="blog-post-header">
+          <span class="blog-post-category">Vector DBs</span>
+          <h1 class="blog-post-title">FAISS vs Pinecone vs Weaviate vs ChromaDB: A Real Benchmark</h1>
+          <div class="blog-post-meta">
+            <span><i class="fa-regular fa-calendar"></i> January 22, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 11 min read</span>
+            <span><i class="fa-regular fa-user"></i> Ahmed Raoofuddin</span>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=600&fit=crop" alt="Vector Databases" class="blog-post-hero">
+
+        <div class="blog-post-content">
+          <p>"Which vector database should I use?" is the single most-asked question in every RAG project I've consulted on. The marketing pages all look the same. The benchmarks online are mostly synthetic.</p>
+
+          <p>So I ran the same 1M-document real estate RAG workload across <strong>FAISS, Pinecone, Weaviate, and ChromaDB</strong>. Same embedding model (<code>text-embedding-3-large</code>, 3072 dimensions), same queries, same hardware. Here's what I found.</p>
+
+          <h2>The Setup</h2>
+          <ul>
+            <li><strong>Dataset</strong>: 1,000,000 real estate listings, avg 800 tokens per doc</li>
+            <li><strong>Embeddings</strong>: OpenAI text-embedding-3-large (3072 dim)</li>
+            <li><strong>Index type</strong>: HNSW where available, IVF-PQ for FAISS</li>
+            <li><strong>Query set</strong>: 10,000 real production queries</li>
+            <li><strong>Hardware</strong>: AWS c6i.4xlarge (self-hosted) or equivalent managed tier</li>
+          </ul>
+
+          <h2>FAISS — The Speed King</h2>
+          <p><strong>Latency (p95):</strong> 8ms<br>
+          <strong>Recall@10:</strong> 0.94<br>
+          <strong>Cost:</strong> Server costs only (~$250/mo)<br>
+          <strong>Operability:</strong> ⭐⭐</p>
+
+          <p>FAISS is the fastest thing I tested, by a wide margin. When you run it in-process with your application, you can't beat it on latency. The tradeoff is that FAISS is a <em>library</em>, not a database. You get no multi-tenancy, no filtering language, no metadata queries, no replication. You build all of that yourself.</p>
+
+          <p><strong>Use when</strong>: you have a single-process workload, embeddings are relatively static, and you care about absolute speed more than features.</p>
+
+          <h2>Pinecone — The Managed Option</h2>
+          <p><strong>Latency (p95):</strong> 45ms<br>
+          <strong>Recall@10:</strong> 0.96<br>
+          <strong>Cost:</strong> $2,100/mo at this scale (s1.x1)<br>
+          <strong>Operability:</strong> ⭐⭐⭐⭐⭐</p>
+
+          <p>Pinecone is what you pick when you don't want to think about infrastructure. Sign up, get an API key, upsert vectors, query. It scales horizontally without you lifting a finger, has solid metadata filtering, and the developer experience is polished.</p>
+
+          <p>The cost, however, is real. At 1M vectors with 3072 dimensions, I was paying more per month than the entire compute budget for the rest of my stack. For smaller projects it's a steal. At scale, the math gets uncomfortable.</p>
+
+          <p><strong>Use when</strong>: you're a small team, you don't want to run infrastructure, and your dataset is under 10M vectors.</p>
+
+          <h2>Weaviate — The Feature-Rich Middle Ground</h2>
+          <p><strong>Latency (p95):</strong> 22ms<br>
+          <strong>Recall@10:</strong> 0.95<br>
+          <strong>Cost:</strong> $600/mo self-hosted, $1,400/mo Weaviate Cloud<br>
+          <strong>Operability:</strong> ⭐⭐⭐⭐</p>
+
+          <p>Weaviate is my current favorite. It has built-in <strong>hybrid search</strong> (BM25 + dense), a proper GraphQL/REST API, multi-tenancy, and first-class support for multi-modal embeddings. It runs in Kubernetes like any other service.</p>
+
+          <p>The thing that pushed me to Weaviate was the modules system — built-in rerankers, cross-encoders, generative modules. I stopped gluing tools together and let Weaviate handle the pipeline.</p>
+
+          <p><strong>Use when</strong>: you need hybrid search, you're comfortable running infrastructure, and you want features that Pinecone doesn't have.</p>
+
+          <h2>ChromaDB — The Prototyper's Best Friend</h2>
+          <p><strong>Latency (p95):</strong> 55ms<br>
+          <strong>Recall@10:</strong> 0.93<br>
+          <strong>Cost:</strong> Free / server costs (~$150/mo)<br>
+          <strong>Operability:</strong> ⭐⭐⭐</p>
+
+          <p>ChromaDB wins on developer experience for small projects. It runs embedded, serverless, or in Docker. The Python API is the cleanest of the four. I use it for every prototype and internal tool.</p>
+
+          <p>That said, it's not yet a match for Weaviate or Pinecone at 1M+ scale. Query latencies climbed noticeably past 500k vectors. I wouldn't put it in front of production traffic over a certain threshold, but for anything under that, it's glorious.</p>
+
+          <p><strong>Use when</strong>: prototyping, internal tools, datasets under 500k vectors.</p>
+
+          <h2>The Summary Table</h2>
+          <pre><code>                  p95    Recall   $/mo    Ops
+FAISS             8ms    0.94     $250    ⭐⭐
+Pinecone          45ms   0.96     $2,100  ⭐⭐⭐⭐⭐
+Weaviate          22ms   0.95     $600    ⭐⭐⭐⭐
+ChromaDB          55ms   0.93     $150    ⭐⭐⭐</code></pre>
+
+          <h2>My Production Choice</h2>
+          <p>For Offplan's 300k+ page RAG system, I run <strong>Weaviate self-hosted on Kubernetes</strong>. Hybrid search + rerankers + operational simplicity beats everything else at that scale.</p>
+
+          <p>For Cortivex's knowledge graph, I use <strong>ChromaDB</strong> because it's embedded and the dataset is small.</p>
+
+          <p>For a new client who just wants a working RAG system in a week, I recommend <strong>Pinecone</strong> every time. The time savings justify the cost until they don't.</p>
+
+          <blockquote>There's no "best" vector database. There's only the one that fits your latency budget, your scale, your operational capacity, and your wallet. Pick based on your constraints, not hype.</blockquote>
+
+          <h2>What I'm Watching in 2026</h2>
+          <ul>
+            <li><strong>LanceDB</strong> — disk-based, multi-modal, impressive benchmarks</li>
+            <li><strong>Qdrant</strong> — Rust performance, payload filtering is best-in-class</li>
+            <li><strong>pgvector + PostgreSQL</strong> — if you already run Postgres, this might be all you need</li>
+            <li><strong>Turbopuffer</strong> — object-storage-backed, interesting cost model</li>
+          </ul>
+
+          <p>The space is still moving. Bookmark this post and check back in six months — the numbers will have shifted.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
